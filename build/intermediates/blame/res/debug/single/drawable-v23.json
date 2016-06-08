@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v23/abc_control_background_material.xml"
+    }
+]
