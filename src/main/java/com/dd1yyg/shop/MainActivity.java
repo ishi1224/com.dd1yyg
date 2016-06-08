@@ -1,6 +1,8 @@
 package com.dd1yyg.shop;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,9 +12,12 @@ import android.view.View;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,6 +33,7 @@ public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String APP_CACAHE_DIRNAME = "/webcache";
+    private ProgressBar mBar;/* 进度条控件 */
     private WebView mWv;
     private Handler mHandler;
     private List<String> tabUrls;
@@ -62,11 +68,42 @@ public class MainActivity extends Activity {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
+            getmBar().setProgress(newProgress);
+            if (newProgress == 100) {
+                getmBar().setVisibility(View.GONE);
+            }
         }
 
         @Override
-        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-            return super.onJsAlert(view, url, message, result);
+        public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("提示" )
+                    .setMessage(message)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+            return true;
+        }
+
+        @Override
+        public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
+            super.onJsAlert(view,url,message,result);
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("提示" )
+                    .setMessage(message)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            result.cancel();
+                        }
+                    })
+                    .show();
+            return true;
         }
 
         @Override
@@ -104,8 +141,13 @@ public class MainActivity extends Activity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);//开始
-            Log.d("load", "开始加载");
+            getmBar().setVisibility(View.VISIBLE);
+        }
 
+        @Override
+        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+            super.onReceivedHttpError(view, request, errorResponse);
+            getmBar().setVisibility(View.GONE);
         }
     }
 
@@ -138,6 +180,13 @@ public class MainActivity extends Activity {
 
     private boolean isIndex() {
         return getTabUrls().contains(getmWv().getUrl());
+    }
+
+    private ProgressBar getmBar(){
+        if(mBar == null){
+            mBar = (ProgressBar) findViewById(R.id.progress);
+        }
+        return mBar;
     }
 
     private WebView getmWv() {
@@ -176,12 +225,19 @@ public class MainActivity extends Activity {
         if (tabUrls == null) {
             tabUrls = new ArrayList<String>();
             tabUrls.add("http://weixin.dd1yyg.com/");
+            tabUrls.add("http://weixin.dd1yyg.com");
             tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/");
+            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile");
+            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/glist/");
             tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/glist");
+            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/lottery/");
             tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/lottery");
+            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/cart/cartlist/");
             tabUrls.add("http://weixin.dd1yyg.com/?/mobile/cart/cartlist");
+            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/user/login/");
             tabUrls.add("http://weixin.dd1yyg.com/?/mobile/user/login");
             tabUrls.add("http://weixin.dd1yyg.com/?/mobile/home/");
+            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/home");
         }
         return tabUrls;
     }

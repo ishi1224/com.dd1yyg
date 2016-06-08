@@ -2,6 +2,7 @@ package com.dd1yyg.shop;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 
 
@@ -32,9 +33,8 @@ public class PayJavaScript {
     }'
     * */
     @JavascriptInterface
-    public void payWX(String json) {//javascript:payjavascript.payWX
-
-
+    public void payWx(String json) {//javascript:payjavascript.payWX
+        Log.d("javascript",json);
     }
 
     @JavascriptInterface
