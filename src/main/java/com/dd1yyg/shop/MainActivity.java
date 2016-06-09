@@ -9,11 +9,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -32,6 +31,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String ERROR_PAGE = "data:text/html,chromewebdata";
     private static final String APP_CACAHE_DIRNAME = "/webcache";
     private ProgressBar mBar;/* 进度条控件 */
     private WebView mWv;
@@ -110,6 +110,15 @@ public class MainActivity extends Activity {
         public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
             return super.onJsPrompt(view, url, message, defaultValue, result);
         }
+
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+            super.onConsoleMessage(consoleMessage);
+            if (consoleMessage.messageLevel() == ConsoleMessage.MessageLevel.ERROR) {
+                Log.d("Level-Url",getmWv().getUrl());
+            }
+            return true;
+        }
     }
 
     private class PayWebViewClient extends WebViewClient {
@@ -121,7 +130,6 @@ public class MainActivity extends Activity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Log.d("url", url);
             view.loadUrl(url);
             return true;
         }
@@ -142,14 +150,17 @@ public class MainActivity extends Activity {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);//开始
             getmBar().setVisibility(View.VISIBLE);
+            Log.d("left", "加载开始:" + url);
         }
 
         @Override
-        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-            super.onReceivedHttpError(view, request, errorResponse);
-            getmBar().setVisibility(View.GONE);
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+            view.loadUrl("file:///android_asset/html/error.html");
+            Log.d("加载失败",failingUrl);
         }
     }
+
 
     /**
      * 点击两次返回键退出应用程序
@@ -224,6 +235,8 @@ public class MainActivity extends Activity {
     public List<String> getTabUrls() {
         if (tabUrls == null) {
             tabUrls = new ArrayList<String>();
+            tabUrls.add("data:text/html,chromewebdata");
+            tabUrls.add("file:///android_asset/html/error.html");
             tabUrls.add("http://weixin.dd1yyg.com/");
             tabUrls.add("http://weixin.dd1yyg.com");
             tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/");
