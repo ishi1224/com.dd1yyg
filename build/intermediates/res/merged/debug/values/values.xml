@@ -213,7 +213,23 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="app_back">返回</string>
+    <string name="app_cancel">取消</string>
+    <string name="app_continue">继续</string>
+    <string name="app_delete">删除</string>
+    <string name="app_edit">编辑</string>
+    <string name="app_find">查找</string>
+    <string name="app_finish">完成</string>
     <string name="app_name">丁丁云购</string>
+    <string name="app_nextstep">下一步</string>
+    <string name="app_ok">确定</string>
+    <string name="app_prevstep">上一步</string>
+    <string name="app_save">保存</string>
+    <string name="app_send">发送</string>
+    <string name="app_set">设置</string>
+    <string name="app_tip">提示</string>
+    <string formatted="false" name="pay_result_callback_msg">微信支付结果：%s</string>
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

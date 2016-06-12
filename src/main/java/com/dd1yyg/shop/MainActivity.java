@@ -3,6 +3,7 @@ package com.dd1yyg.shop;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,15 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.dd1yyg.shop.view.Navigationbar;
+import com.tencent.mm.sdk.constants.Build;
+import com.tencent.mm.sdk.constants.ConstantsAPI;
+import com.tencent.mm.sdk.modelbase.BaseReq;
+import com.tencent.mm.sdk.modelbase.BaseResp;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +38,7 @@ import java.util.List;
 //http://weixin.dd1yyg.com/?/mobile/cart/cartlist(4)
 //http://weixin.dd1yyg.com/?/mobile/user/login(5)|http://weixin.dd1yyg.com/?/mobile/home/(5)
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements IWXAPIEventHandler {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String ERROR_PAGE = "data:text/html,chromewebdata";
@@ -38,13 +48,20 @@ public class MainActivity extends Activity {
     private Handler mHandler;
     private List<String> tabUrls;
     private Navigationbar mNavBar;
+    // IWXAPI 是第三方app和微信通信的openapi接口
+    private IWXAPI api;
+    private boolean lock;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+        api.handleIntent(getIntent(), this);
         mHandler = new Handler();
-        getmWv().loadUrl("http://weixin.dd1yyg.com");
+        getmWv().loadUrl(Constants.HOST);
         getmNavBar().setIvLeft(R.mipmap.back_arrow);
         getmNavBar().getFlLeft().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +72,40 @@ public class MainActivity extends Activity {
             }
         });
         getmNavBar().setLeftInVisible();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        api.handleIntent(intent, this);
+    }
+
+    public boolean isPaySupported(){
+        boolean isPaySupported = api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
+        if (!isPaySupported) {
+            Toast.makeText(MainActivity.this, "微信版本不支持支付功能", Toast.LENGTH_SHORT).show();
+        }
+        return  isPaySupported;
+    }
+
+    @Override
+    public void onReq(BaseReq req) {
+
+    }
+
+    @Override
+    public void onResp(BaseResp resp) {
+        Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
+
+        if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.app_tip);
+            builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
+            builder.show();
+        }
+
+        setLock(false);
     }
 
     private class PayWebChromeClient extends WebChromeClient {
@@ -232,25 +283,40 @@ public class MainActivity extends Activity {
         return mNavBar;
     }
 
+    public IWXAPI getApi() {
+        if (api == null){
+            api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+        }
+        return api;
+    }
+
+    public boolean isLock() {
+        return !lock;
+    }
+
+    public void setLock(boolean lock) {
+        this.lock = lock;
+    }
+
     public List<String> getTabUrls() {
         if (tabUrls == null) {
             tabUrls = new ArrayList<String>();
             tabUrls.add("data:text/html,chromewebdata");
             tabUrls.add("file:///android_asset/html/error.html");
-            tabUrls.add("http://weixin.dd1yyg.com/");
-            tabUrls.add("http://weixin.dd1yyg.com");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/glist/");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/glist");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/lottery/");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/mobile/lottery");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/cart/cartlist/");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/cart/cartlist");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/user/login/");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/user/login");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/home/");
-            tabUrls.add("http://weixin.dd1yyg.com/?/mobile/home");
+            tabUrls.add(Constants.HOST+"/");
+            tabUrls.add(Constants.HOST);
+            tabUrls.add(Constants.HOST+"/?/mobile/mobile/");
+            tabUrls.add(Constants.HOST+"/?/mobile/mobile");
+            tabUrls.add(Constants.HOST+"/?/mobile/mobile/glist/");
+            tabUrls.add(Constants.HOST+"/?/mobile/mobile/glist");
+            tabUrls.add(Constants.HOST+"/?/mobile/mobile/lottery/");
+            tabUrls.add(Constants.HOST+"/?/mobile/mobile/lottery");
+            tabUrls.add(Constants.HOST+"/?/mobile/cart/cartlist/");
+            tabUrls.add(Constants.HOST+"/?/mobile/cart/cartlist");
+            tabUrls.add(Constants.HOST+"/?/mobile/user/login/");
+            tabUrls.add(Constants.HOST+"/?/mobile/user/login");
+            tabUrls.add(Constants.HOST+"/?/mobile/home/");
+            tabUrls.add(Constants.HOST+"/?/mobile/home");
         }
         return tabUrls;
     }
