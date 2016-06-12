@@ -4,11 +4,23 @@
         "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/src/main/res/mipmap-mdpi/back_arrow.png"
     },
     {
-        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/build/intermediates/res/merged/debug/mipmap-mdpi-v4/appicon.png",
-        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/src/main/res/mipmap-mdpi/appicon.png"
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/res/merged/debug/mipmap-mdpi-v4/appicon.png",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/src/main/res/mipmap-mdpi/appicon.png"
     },
     {
         "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
         "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/build/intermediates/res/merged/debug/mipmap-mdpi-v4/appicon.png",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/dd1yyg/com.dd1yyg/src/main/res/mipmap-mdpi/appicon.png"
+    },
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/res/merged/debug/mipmap-mdpi-v4/back_arrow.png",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/src/main/res/mipmap-mdpi/back_arrow.png"
     }
 ]
