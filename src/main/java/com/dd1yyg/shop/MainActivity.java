@@ -3,7 +3,6 @@ package com.dd1yyg.shop;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,13 +19,9 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.dd1yyg.shop.view.Navigationbar;
+import com.dd1yyg.shop.view.NavigationBar;
 import com.tencent.mm.sdk.constants.Build;
-import com.tencent.mm.sdk.constants.ConstantsAPI;
-import com.tencent.mm.sdk.modelbase.BaseReq;
-import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.ArrayList;
@@ -38,18 +33,17 @@ import java.util.List;
 //http://weixin.dd1yyg.com/?/mobile/cart/cartlist(4)
 //http://weixin.dd1yyg.com/?/mobile/user/login(5)|http://weixin.dd1yyg.com/?/mobile/home/(5)
 
-public class MainActivity extends Activity implements IWXAPIEventHandler {
+public class MainActivity extends Activity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
     private static final String ERROR_PAGE = "data:text/html,chromewebdata";
     private static final String APP_CACAHE_DIRNAME = "/webcache";
     private ProgressBar mBar;/* 进度条控件 */
     private WebView mWv;
     private Handler mHandler;
     private List<String> tabUrls;
-    private Navigationbar mNavBar;
+    private NavigationBar mNavBar;
     // IWXAPI 是第三方app和微信通信的openapi接口
-    private IWXAPI api;
+    private IWXAPI iwxapi;
     private boolean lock;
 
 
@@ -57,10 +51,7 @@ public class MainActivity extends Activity implements IWXAPIEventHandler {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
-        api.handleIntent(getIntent(), this);
-        mHandler = new Handler();
+        regToWx();
         getmWv().loadUrl(Constants.HOST);
         getmNavBar().setIvLeft(R.mipmap.back_arrow);
         getmNavBar().getFlLeft().setOnClickListener(new View.OnClickListener() {
@@ -74,38 +65,12 @@ public class MainActivity extends Activity implements IWXAPIEventHandler {
         getmNavBar().setLeftInVisible();
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        api.handleIntent(intent, this);
-    }
-
     public boolean isPaySupported(){
-        boolean isPaySupported = api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
+        boolean isPaySupported = getWxapi().getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
         if (!isPaySupported) {
             Toast.makeText(MainActivity.this, "微信版本不支持支付功能", Toast.LENGTH_SHORT).show();
         }
         return  isPaySupported;
-    }
-
-    @Override
-    public void onReq(BaseReq req) {
-
-    }
-
-    @Override
-    public void onResp(BaseResp resp) {
-        Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
-
-        if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.app_tip);
-            builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
-            builder.show();
-        }
-
-        setLock(false);
     }
 
     private class PayWebChromeClient extends WebChromeClient {
@@ -255,7 +220,7 @@ public class MainActivity extends Activity implements IWXAPIEventHandler {
         if (mWv == null) {
             this.mWv = (WebView) findViewById(R.id.wv);
             this.mWv.getSettings().setJavaScriptEnabled(true);
-            this.mWv.addJavascriptInterface(new PayJavaScript(this, mHandler),
+            this.mWv.addJavascriptInterface(new PayJavaScript(this, getmHandler()),
                     "payjavascript");
             this.mWv.setWebChromeClient(new PayWebChromeClient());
             this.mWv.setWebViewClient(new PayWebViewClient());
@@ -266,7 +231,6 @@ public class MainActivity extends Activity implements IWXAPIEventHandler {
             //开启 database storage API 功能
             this.mWv.getSettings().setDatabaseEnabled(true);
             String cacheDirPath = getFilesDir().getAbsolutePath() + APP_CACAHE_DIRNAME;
-            Log.i(TAG, "cacheDirPath=" + cacheDirPath);
             //设置  Application Caches 缓存目录
             this.mWv.getSettings().setAppCachePath(cacheDirPath);
             //开启 Application Caches 功能
@@ -276,18 +240,31 @@ public class MainActivity extends Activity implements IWXAPIEventHandler {
         return mWv;
     }
 
-    public Navigationbar getmNavBar() {
+    public Handler getmHandler(){
+        if (mHandler == null){
+            mHandler = new Handler();
+        }
+        return mHandler;
+    }
+
+    public NavigationBar getmNavBar() {
         if (mNavBar == null) {
-            mNavBar = (Navigationbar) findViewById(R.id.nav);
+            mNavBar = (NavigationBar) findViewById(R.id.nav);
         }
         return mNavBar;
     }
 
-    public IWXAPI getApi() {
-        if (api == null){
-            api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+    public IWXAPI getWxapi() {
+        if (iwxapi == null){
+            regToWx();
         }
-        return api;
+        return iwxapi;
+    }
+
+    private void regToWx(){
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        iwxapi = WXAPIFactory.createWXAPI(this, getResources().getString(R.string.APP_ID_WX),true);
+        iwxapi.registerApp(getResources().getString(R.string.APP_ID_WX));
     }
 
     public boolean isLock() {

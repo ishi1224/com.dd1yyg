@@ -5,16 +5,19 @@ package com.dd1yyg.app;
  */
 public class AppContext {
 
-    private AppContext context;
+    private static AppContext mInstance;
 
     private AppContext(){super();}
 
-    public AppContext getInstance(){
-        if (context == null){
-            context = new AppContext();
-        }
-        return context;
-    }
+    public static AppContext getInstance() {
 
+        if (mInstance == null) {
+            synchronized (AppContext.class) {
+                if (mInstance == null)
+                    mInstance = new AppContext();
+            }
+        }
+        return mInstance;
+    }
 
 }

@@ -16,6 +16,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name="com.dd1yyg.app.App"
@@ -39,9 +42,13 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="wxd930ea5d5a258f4f" />
+                <data android:scheme="@string/APP_ID_WX" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.dd1yyg.shop.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
 
         <receiver android:name="com.dd1yyg.shop.receiver.AppRegister" >
             <intent-filter>

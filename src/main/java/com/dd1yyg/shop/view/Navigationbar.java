@@ -2,7 +2,9 @@ package com.dd1yyg.shop.view;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,7 @@ import com.dd1yyg.shop.utils.DensityUtil;
 /**
  * Created by QuestZhang on 16/6/7.
  */
-public class Navigationbar extends LinearLayout {
+public class NavigationBar extends LinearLayout {
 
     private Context context;
     private FrameLayout flLeft;
@@ -32,12 +34,12 @@ public class Navigationbar extends LinearLayout {
     private static final int MP = ViewGroup.LayoutParams.MATCH_PARENT;
     private static final int WC = ViewGroup.LayoutParams.WRAP_CONTENT;
 
-    public Navigationbar(Context context) {
+    public NavigationBar(Context context) {
         super(context);
         setupViews(context);
     }
 
-    public Navigationbar(Context context, AttributeSet attrs) {
+    public NavigationBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         setupViews(context);
     }
@@ -151,6 +153,12 @@ public class Navigationbar extends LinearLayout {
             tvTitle.setTextColor(Color.parseColor("#FFFFFF"));
             tvTitle.setBackgroundColor(Color.parseColor("#00000000"));
             tvTitle.setGravity(Gravity.CENTER);
+            TextPaint tp = tvTitle.getPaint();
+            tp.setFakeBoldText(true);
+            //setTextSize(TypedValue.COMPLEX_UNIT_PX, 22); //22像素
+            //setTextSize(TypedValue.COMPLEX_UNIT_SP, 22); //22SP
+            //setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);//22DIP
+            tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
         }
         return tvTitle;
     }

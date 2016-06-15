@@ -2,6 +2,10 @@ package com.dd1yyg.shop.utils;
 
 import java.security.MessageDigest;
 
+/**
+ * Created by QuestZhang on 16/6/7.
+ */
+
 public class MD5 {
 
 	private MD5() {}
