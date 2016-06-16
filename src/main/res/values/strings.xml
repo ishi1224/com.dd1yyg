@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">丁丁云购</string>
-    <string name="APP_ID_WX">wx6a6dabef860d5157</string>
+    <string name="APP_ID_WX">wx6a6dabef860d5157</string><!-- 微信appID -->
+    <string name="MCH_ID_WX">1305176001</string><!-- 商户号 -->
+    <string name="API_SECRET_KEY">secret key</string><!-- API密钥-->
     <string name="app_back">返回</string>
     <string name="app_ok">确定</string>
     <string name="app_cancel">取消</string>

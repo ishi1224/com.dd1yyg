@@ -44,9 +44,22 @@ public class TimeUtil {
 	public static final String TIME_FORMAT_15 = "MM-dd";
 	public static final String TIME_FORMAT_16 = "yy-MM-dd";
 	public static final String TIME_FORMAT_17="dd/MM E HH:mm";
+
+	/** yyyy-MM-dd'T'HH:mm:ss.SSSZ */
 	// 时间常量
 	private static final int SECOUND_OF_HOUR = 3600;
 	private static final int SECOUND_OF_MIN = 60;
+	private static final String TIME_FORMAT_TRADE_NO = "yyyyMMddHHmmss";
+
+	/**
+	 * 使用时间作为当前订单
+	 */
+	public static String getOutTradeNo() {
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT_TRADE_NO,
+				Locale.SIMPLIFIED_CHINESE);
+		return dateFormat.format(date);
+	}
 
 	/**
 	 * 根据时间格式获得当前时间
@@ -112,6 +125,20 @@ public class TimeUtil {
 		String date = new SimpleDateFormat(formater, Locale.SIMPLIFIED_CHINESE)
 				.format(new Date(timestamp));
 		return date;
+	}
+
+	/**
+	 * Unix 将当前日期转换时间戳
+	 * @return
+	 */
+	public static String Date2TimeStamp(){
+		long ts = 0;
+		try {
+			ts = new java.text.SimpleDateFormat(TIME_FORMAT_TRADE_NO).parse(getOutTradeNo()).getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return String.valueOf(ts);
 	}
 
 	public static long getTodayTimeMillis() {

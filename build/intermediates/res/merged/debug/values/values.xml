@@ -16,7 +16,8 @@
     <color name="white">#ffffff</color>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <string name="APP_ID_WX">wxe9b7953784c54af2</string>
+    <string name="APP_ID_WX">wx6a6dabef860d5157</string>
+    <string name="MCH_ID_WX">1305176001</string>
     <string name="app_back">返回</string>
     <string name="app_cancel">取消</string>
     <string name="app_continue">继续</string>
