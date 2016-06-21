@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/res/merged/debug/layout/activity_main.xml",
-        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/src/main/res/layout/activity_main.xml"
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/res/merged/debug/layout/pay_result.xml",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/src/main/res/layout/pay_result.xml"
     },
     {
-        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/res/merged/debug/layout/pay_result.xml",
-        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/src/main/res/layout/pay_result.xml"
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/src/main/res/layout/activity_main.xml"
     }
 ]

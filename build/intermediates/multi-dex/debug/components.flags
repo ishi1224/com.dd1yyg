@@ -1,5 +1,5 @@
--injars /Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/transforms/jarMerging/debug/jars/1/1f/combined.jar
--outjars /Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/multi-dex/debug/componentClasses.jar
+-injars /Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/transforms/jarMerging/debug/jars/1/1f/combined.jar
+-outjars /Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/multi-dex/debug/componentClasses.jar
 
 -libraryjars /Users/QuestZhang/android/sdk/build-tools/23.0.2/lib/shrinkedAndroid.jar
 
@@ -9,23 +9,23 @@
 -dontusemixedcaseclassnames
 -dontpreverify
 -dontwarn
--printconfiguration /Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.dd1yyg/build/intermediates/multi-dex/debug/components.flags
+-printconfiguration /Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/multi-dex/debug/components.flags
 
 
--keep class com.dd1yyg.app.App {
+-keep class com.ddyyyg.app.App {
     <init>();
     void attachBaseContext(android.content.Context);
 }
 
--keep class com.dd1yyg.shop.MainActivity {
+-keep class com.ddyyyg.shop.MainActivity {
     <init>();
 }
 
--keep class com.dd1yyg.shop.WXPayEntryActivity {
+-keep class com.ddyyyg.shop.WXPayEntryActivity {
     <init>();
 }
 
--keep class com.dd1yyg.shop.receiver.AppRegister {
+-keep class com.ddyyyg.shop.receiver.AppRegister {
     <init>();
 }
 

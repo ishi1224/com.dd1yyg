@@ -1,10 +1,10 @@
--keep class com.dd1yyg.app.App {
+-keep class com.ddyyyg.app.App {
     <init>();
     void attachBaseContext(android.content.Context);
 }
--keep class com.dd1yyg.shop.MainActivity { <init>(); }
--keep class com.dd1yyg.shop.WXPayEntryActivity { <init>(); }
--keep class com.dd1yyg.shop.receiver.AppRegister { <init>(); }
+-keep class com.ddyyyg.shop.MainActivity { <init>(); }
+-keep class com.ddyyyg.shop.WXPayEntryActivity { <init>(); }
+-keep class com.ddyyyg.shop.receiver.AppRegister { <init>(); }
 -keep public class * extends android.app.backup.BackupAgent {
     <init>();
 }
