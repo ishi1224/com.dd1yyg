@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/res/merged/releaseConfig/debug/mipmap-xxhdpi-v4/back_arrow.png",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/src/main/res/mipmap-xxhdpi/back_arrow.png"
+    },
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/res/merged/releaseConfig/debug/mipmap-xxhdpi-v4/ic_launcher.png",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/build/intermediates/res/merged/releaseConfig/debug/mipmap-xxhdpi-v4/appicon.png",
+        "source": "/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/src/main/res/mipmap-xxhdpi/appicon.png"
+    }
+]

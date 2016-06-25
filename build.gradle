@@ -1,32 +1,71 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 17
     buildToolsVersion '23.0.2'
-
     defaultConfig {
-        applicationId "com.dd1yyg.shop"
+        applicationId 'com.ddyyyg.shop'
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
     buildTypes {
         debug {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //混淆
             minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
         }
         release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //混淆
             minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+            proguardFile '/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/proguard-rules.pro'
+            renderscriptDebuggable false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = outputFile.name.replace(".apk", "-${defaultConfig.versionName}.apk")
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
         }
     }
     dexOptions {
         javaMaxHeapSize "4g"
         preDexLibraries = false
     }
-
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -44,7 +83,4 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile ('com.thoughtworks.xstream:xstream:1.4.7'){
-            exclude group: 'xmlpull', module: 'xmlpull'
-    }
 }

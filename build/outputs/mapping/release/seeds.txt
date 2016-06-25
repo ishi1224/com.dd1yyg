@@ -1,0 +1,108 @@
+com.ddyyyg.app.App
+com.ddyyyg.app.App: App()
+com.ddyyyg.shop.MainActivity
+com.ddyyyg.shop.MainActivity: MainActivity()
+com.ddyyyg.shop.R$color: int black
+com.ddyyyg.shop.R$color: int blue
+com.ddyyyg.shop.R$color: int colorAccent
+com.ddyyyg.shop.R$color: int colorPrimary
+com.ddyyyg.shop.R$color: int colorPrimaryDark
+com.ddyyyg.shop.R$color: int darkgrey
+com.ddyyyg.shop.R$color: int grey
+com.ddyyyg.shop.R$color: int lightgrey
+com.ddyyyg.shop.R$color: int lightransparent
+com.ddyyyg.shop.R$color: int navpage
+com.ddyyyg.shop.R$color: int semitransparent
+com.ddyyyg.shop.R$color: int toasterro
+com.ddyyyg.shop.R$color: int transparent
+com.ddyyyg.shop.R$color: int white
+com.ddyyyg.shop.R$dimen: int activity_horizontal_margin
+com.ddyyyg.shop.R$dimen: int activity_vertical_margin
+com.ddyyyg.shop.R$drawable: int progressbar_style
+com.ddyyyg.shop.R$id: int nav
+com.ddyyyg.shop.R$id: int progress
+com.ddyyyg.shop.R$id: int wv
+com.ddyyyg.shop.R$layout: int activity_main
+com.ddyyyg.shop.R$layout: int pay_result
+com.ddyyyg.shop.R$mipmap: int appicon
+com.ddyyyg.shop.R$mipmap: int back_arrow
+com.ddyyyg.shop.R$mipmap: int ic_launcher
+com.ddyyyg.shop.R$string: int API_SECRET_KEY
+com.ddyyyg.shop.R$string: int APP_ID_WX
+com.ddyyyg.shop.R$string: int MCH_ID_WX
+com.ddyyyg.shop.R$string: int TRADE_TYPE_WX
+com.ddyyyg.shop.R$string: int app_back
+com.ddyyyg.shop.R$string: int app_cancel
+com.ddyyyg.shop.R$string: int app_continue
+com.ddyyyg.shop.R$string: int app_delete
+com.ddyyyg.shop.R$string: int app_edit
+com.ddyyyg.shop.R$string: int app_find
+com.ddyyyg.shop.R$string: int app_finish
+com.ddyyyg.shop.R$string: int app_name
+com.ddyyyg.shop.R$string: int app_nextstep
+com.ddyyyg.shop.R$string: int app_ok
+com.ddyyyg.shop.R$string: int app_prevstep
+com.ddyyyg.shop.R$string: int app_save
+com.ddyyyg.shop.R$string: int app_send
+com.ddyyyg.shop.R$string: int app_set
+com.ddyyyg.shop.R$string: int app_tip
+com.ddyyyg.shop.R$string: int pay_result_callback_msg
+com.ddyyyg.shop.R$string: int pay_result_tip
+com.ddyyyg.shop.R$style: int AppTheme
+com.ddyyyg.shop.R$style: int NavPage
+com.ddyyyg.shop.WXPayEntryActivity
+com.ddyyyg.shop.WXPayEntryActivity: WXPayEntryActivity()
+com.ddyyyg.shop.model.BaseModel
+com.ddyyyg.shop.model.PayModel
+com.ddyyyg.shop.model.PayReturnModel
+com.ddyyyg.shop.receiver.AppRegister
+com.ddyyyg.shop.receiver.AppRegister: AppRegister()
+com.ddyyyg.shop.view.NavigationBar
+com.ddyyyg.shop.view.NavigationBar: NavigationBar(android.content.Context)
+com.ddyyyg.shop.view.NavigationBar: NavigationBar(android.content.Context,android.util.AttributeSet)
+com.ddyyyg.shop.view.NavigationBar: void setupViews(android.content.Context)
+com.ddyyyg.shop.view.NavigationBar: void setTvLeft(java.lang.String)
+com.ddyyyg.shop.view.NavigationBar: void setIvLeft(int)
+com.ddyyyg.shop.view.NavigationBar: void setTvTitle(java.lang.String)
+com.ddyyyg.shop.view.NavigationBar: void setIvTitle(int)
+com.ddyyyg.shop.view.NavigationBar: void setTvRight(java.lang.String)
+com.ddyyyg.shop.view.NavigationBar: void setIvRight(int)
+com.ddyyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlLeft()
+com.ddyyyg.shop.view.NavigationBar: android.widget.TextView getTvLeft()
+com.ddyyyg.shop.view.NavigationBar: android.widget.ImageView getIvLeft()
+com.ddyyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlTitle()
+com.ddyyyg.shop.view.NavigationBar: android.widget.TextView getTvTitle()
+com.ddyyyg.shop.view.NavigationBar: android.widget.ImageView getIvTitle()
+com.ddyyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlRight()
+com.ddyyyg.shop.view.NavigationBar: android.widget.TextView getTvRight()
+com.ddyyyg.shop.view.NavigationBar: android.widget.ImageView getIvRight()
+com.thoughtworks.xstream.InitializationException
+com.thoughtworks.xstream.XStream$InitializationException
+com.thoughtworks.xstream.XStreamException
+com.thoughtworks.xstream.converters.ConversionException
+com.thoughtworks.xstream.converters.javabean.JavaBeanConverter$2
+com.thoughtworks.xstream.converters.javabean.JavaBeanConverter$DuplicateFieldException
+com.thoughtworks.xstream.converters.javabean.JavaBeanConverter$DuplicatePropertyException
+com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$3
+com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$ArraysList
+com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$DuplicateFieldException
+com.thoughtworks.xstream.converters.reflection.AbstractReflectionConverter$UnknownFieldException
+com.thoughtworks.xstream.converters.reflection.MissingFieldException
+com.thoughtworks.xstream.converters.reflection.ObjectAccessException
+com.thoughtworks.xstream.core.AbstractReferenceMarshaller$ReferencedImplicitElementException
+com.thoughtworks.xstream.core.BaseException
+com.thoughtworks.xstream.core.TreeMarshaller$CircularReferenceException
+com.thoughtworks.xstream.core.util.CompositeClassLoader$1
+com.thoughtworks.xstream.core.util.OrderRetainingMap
+com.thoughtworks.xstream.core.util.OrderRetainingMap$ArraySet
+com.thoughtworks.xstream.core.util.PresortedMap$ArraySet
+com.thoughtworks.xstream.io.StreamException
+com.thoughtworks.xstream.io.json.AbstractJsonWriter$IllegalWriterStateException
+com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder$1IntPairList
+com.thoughtworks.xstream.io.xml.xppdom.Xpp3Dom
+com.thoughtworks.xstream.io.xml.xppdom.XppDom
+com.thoughtworks.xstream.mapper.AnnotationMapper$1
+com.thoughtworks.xstream.mapper.AnnotationMapper$UnprocessedTypesSet
+com.thoughtworks.xstream.mapper.CannotResolveClassException
+com.thoughtworks.xstream.mapper.PackageAliasingMapper
+com.thoughtworks.xstream.security.ForbiddenClassException

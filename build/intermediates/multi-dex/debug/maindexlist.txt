@@ -5,6 +5,7 @@ com/thoughtworks/xstream/annotations/Annotations.class
 com/thoughtworks/xstream/annotations/AnnotationReflectionConverter.class
 com/thoughtworks/xstream/annotations/XStreamImplicit.class
 com/tencent/mm/sdk/openapi/IWXAPI.class
+com/ddyyyg/shop/utils/ToastUtil.class
 com/ddyyyg/shop/WXPayEntryActivity.class
 com/thoughtworks/xstream/annotations/AnnotationProvider.class
 com/ddyyyg/shop/model/PayModel.class

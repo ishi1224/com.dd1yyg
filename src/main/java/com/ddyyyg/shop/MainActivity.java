@@ -19,6 +19,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ddyyyg.shop.utils.ToastUtil;
 import com.ddyyyg.shop.view.NavigationBar;
 import com.tencent.mm.sdk.constants.Build;
 import com.tencent.mm.sdk.openapi.IWXAPI;
@@ -68,7 +69,7 @@ public class MainActivity extends Activity {
     public boolean isPaySupported(){
         boolean isPaySupported = getWxapi().getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
         if (!isPaySupported) {
-            Toast.makeText(MainActivity.this, "微信版本不支持支付功能", Toast.LENGTH_SHORT).show();
+            ToastUtil.makeText(MainActivity.this, "微信版本不支持支付功能");
         }
         return  isPaySupported;
     }

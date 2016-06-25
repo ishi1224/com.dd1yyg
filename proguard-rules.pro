@@ -12,6 +12,18 @@
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
+-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+   public *;
+}
+-keepclassmembers class com.ddyyyg.shop.view.PayJavaScript{
+    public *;
+}
+
+-keep class com.thoughtworks.xstream.XStream.** { *; }
+-dontwarn com.thoughtworks.xstream.**
+
+-keepnames class * implements java.io.Serializable
+
+#-keepclasseswithmembernames class* {#保持native方法不被混淆
+#    native<methods>;
 #}

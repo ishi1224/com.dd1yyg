@@ -67,7 +67,6 @@ public class PayJavaScript {
                 main.setLock(false);
             }
         },10*1000);
-
     }
 
     //拼接统一下单的ValueNamePair
@@ -77,26 +76,27 @@ public class PayJavaScript {
             JSONObject json = new JSONObject(params);
             PayModel model = new PayModel();
             model.setAppid(OrderUtil.getAppid(mContext));//**是 应用ID
-            model.setMch_id(OrderUtil.getMacid(mContext));//**是 商户号
-            model.setDevice_info("");//否 设备号
+            model.setMch_id(OrderUtil.getMacid(mContext)/*"1356293102"*/);//**是 商户号
+            //model.setDevice_info("");//否 设备号
             model.setNonce_str(OrderUtil.getNonceStr());//**是 随机字符串
             model.setBody("测试商品test");//**是 商品描述***************
-            model.setDetail(json.optString("detail"));//否 商品详情
-            model.setAttach(json.optString("attach"));//否 附加数据
+            //model.setDetail(json.optString("detail"));//否 商品详情
+            //model.setAttach(json.optString("attach"));//否 附加数据
             model.setOut_trade_no(OrderUtil.getOutTradeNo());//**是 商户订单号
-            model.setFee_type(json.optString("fee_type"));//否 货币类型
-            model.setTotal_fee("0.01");//**是 总金额******************
+            //model.setFee_type(json.optString("fee_type"));//否 货币类型
+            model.setTotal_fee("1");//**是 总金额******************
             model.setSpbill_create_ip(OrderUtil.getSpbillCreateIp());//**是 终端IP
-            model.setTime_start(json.optString("time_start"));//否 交易起始时间
-            model.setTime_expire(json.optString("time_expire"));//否 交易结束时间
-            model.setGoods_tag(json.optString("goods_tag"));//否 商品标记
+            //model.setTime_start(json.optString("time_start"));//否 交易起始时间
+            //model.setTime_expire(json.optString("time_expire"));//否 交易结束时间
+            //model.setGoods_tag(json.optString("goods_tag"));//否 商品标记
             model.setNotify_url(OrderUtil.getNotifyUrl());//**是 通知地址
             model.setTrade_type(OrderUtil.getTradeType(mContext));//**是 交易类型
-            model.setLimit_pay(json.optString("limit_pay"));//否 指定支付方式
+            //model.setLimit_pay(json.optString("limit_pay"));//否 指定支付方式
             model.setSign(OrderUtil.getSign(mContext,model));//**是 签名
             XStream xStream = new XStream();
             xStream.autodetectAnnotations(true);
             xml = xStream.toXML(model);
+            LogUtil.d("xml",xml);
             return xml;
         } catch (JSONException e) {
             e.printStackTrace();
