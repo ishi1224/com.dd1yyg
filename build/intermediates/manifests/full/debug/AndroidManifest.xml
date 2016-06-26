@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ddyyyg.shop.WXPayEntryActivity"
+            android:name="com.ddyyyg.shop.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop" />
 

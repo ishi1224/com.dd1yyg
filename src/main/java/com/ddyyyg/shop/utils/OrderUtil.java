@@ -5,6 +5,7 @@ import android.content.Context;
 import com.ddyyyg.shop.Constants;
 import com.ddyyyg.shop.R;
 import com.ddyyyg.shop.model.PayModel;
+import com.ddyyyg.shop.model.PayReturnModel;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -54,8 +55,22 @@ public final class OrderUtil {
         return context.getResources().getString(R.string.TRADE_TYPE_WX);
     }
 
-    //**是 签名
+    //**是 扩展字段 暂填写固定值Sign=WXPay
+    public static final String getPackageValue(Context context){
+       return context.getResources().getString(R.string.PACKAGEVALUE_WX);
+    }
+
+    //**是 签名 统一下单
     public static final String getSign(Context context,PayModel model){
+        Map<String,String> m = M(model);
+        Set<String> keySet = m.keySet();
+        List<String> keys = new ArrayList<String>(keySet);
+        Collections.sort(keys);//字典顺序
+        return MD5.d(Splice(context, keys, m)).toUpperCase();
+    }
+
+    //**是 签名 拉起微信支付
+    public static final String getSign(Context context,PayReturnModel model){
         Map<String,String> m = M(model);
         Set<String> keySet = m.keySet();
         List<String> keys = new ArrayList<String>(keySet);
@@ -65,6 +80,31 @@ public final class OrderUtil {
 
     //分装参数集合
     private static final Map<String,String> M(PayModel model){
+        Map<String,String> m = null;
+        try {
+            m = new HashMap<String, String>();
+            Field[] fields = model.getClass().getDeclaredFields();
+            System.out.println(fields.length);
+            for (Field field: fields) {
+                boolean flag = field.isAccessible();
+                field.setAccessible(true);
+                String fieldName = field.getName();
+                String value = String.valueOf(field.get(model));
+                field.setAccessible(flag);
+                if ("null".equals(value) || value == null || value.trim().length() == 0){
+                    continue;
+                }
+                m.put(fieldName,value);
+            }
+            return m;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return m;
+    }
+
+    //分装参数集合
+    private static final Map<String,String> M(PayReturnModel model){
         Map<String,String> m = null;
         try {
             m = new HashMap<String, String>();

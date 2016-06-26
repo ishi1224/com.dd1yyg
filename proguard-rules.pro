@@ -15,11 +15,16 @@
 -keepclassmembers class fqcn.of.javascript.interface.for.webview {
    public *;
 }
--keepclassmembers class com.ddyyyg.shop.view.PayJavaScript{
+
+-keepclassmembers class com.ddyyyg.shop.PayJavaScript{
     public *;
 }
 
--keep class com.thoughtworks.xstream.XStream.** { *; }
+-keep class com.ddyyyg.shop.PayJavaScript.** { *; }
+-keep class com.ddyyyg.shop.model.** { *; }
+
+-keep class com.thoughtworks.xstream.**{*;}#使用xstream重点
+
 -dontwarn com.thoughtworks.xstream.**
 
 -keepnames class * implements java.io.Serializable

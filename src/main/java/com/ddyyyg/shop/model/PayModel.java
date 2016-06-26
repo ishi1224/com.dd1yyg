@@ -2,29 +2,49 @@ package com.ddyyyg.shop.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.Serializable;
+
 /**
  * Created by QuestZhang on 16/6/12.
  */
 @XStreamAlias("xml")
-public class PayModel extends BaseModel {
+public class PayModel extends BaseModel implements Serializable {
 
+    @XStreamAlias("appid")
     private String appid;//是 应用ID
+    @XStreamAlias("mch&nbsp&id")
     private String mch_id;//**是 商户号
+    @XStreamAlias("device&nbsp&info")
     private String device_info;//否 设备号
+    @XStreamAlias("nonce&nbsp&str")
     private String nonce_str;//**是 随机字符串
+    @XStreamAlias("sign")
     private String sign;//**是 签名
+    @XStreamAlias("body")
     private String body;//**是 商品描述
+    @XStreamAlias("detail")
     private String detail;//否 商品详情
+    @XStreamAlias("attach")
     private String attach;//否 附加数据
+    @XStreamAlias("out&nbsp&trade&nbsp&no")
     private String out_trade_no;//**是 商户订单号
+    @XStreamAlias("fee&nbsp&type")
     private String fee_type;//否 货币类型
+    @XStreamAlias("total&nbsp&fee")
     private String total_fee;//**是 总金额
+    @XStreamAlias("spbill&nbsp&create&nbsp&ip")
     private String spbill_create_ip;//**是 终端IP
+    @XStreamAlias("time&nbsp&start")
     private String time_start;//否 交易起始时间
+    @XStreamAlias("time&nbsp&expire")
     private String time_expire;//否 交易结束时间
+    @XStreamAlias("goods&nbsp&tag")
     private String goods_tag;//否 商品标记
+    @XStreamAlias("notify&nbsp&url")
     private String notify_url;//**是 通知地址
+    @XStreamAlias("trade&nbsp&type")
     private String trade_type;//**是 交易类型
+    @XStreamAlias("limit&nbsp&pay")
     private String limit_pay;//否 指定支付方式
 
 

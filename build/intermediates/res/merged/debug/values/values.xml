@@ -19,6 +19,7 @@
     <string name="API_SECRET_KEY">ABCDE12345abcde67890ABCDEabcde00</string>
     <string name="APP_ID_WX">wx6a6dabef860d5157</string>
     <string name="MCH_ID_WX">1356293102</string>
+    <string name="PACKAGEVALUE_WX">Sign=WXPay</string>
     <string name="TRADE_TYPE_WX">APP</string>
     <string name="app_back">返回</string>
     <string name="app_cancel">取消</string>

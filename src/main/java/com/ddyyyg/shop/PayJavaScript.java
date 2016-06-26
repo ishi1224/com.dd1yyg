@@ -38,19 +38,15 @@ public class PayJavaScript {
         this.main = (MainActivity) context;
     }
 
-    /*
-    '{
-    "appId":"wx0952813220b9ef2b",
-    "timeStamp":"1465137465",
-    "nonceStr":"120flpvpu9rndbrku3hjz6hayb8gu6yb",
-    "package":"prepay_id=",
-    "signType":"MD5",
-    "paySign":"A482B0C0FE1E8B3DC9D8779329EBD815"
-    }'
-    * */
+    @JavascriptInterface
+    public void payAlipay(String json) {//javascript:payjavascript.payAlipay
+
+
+    }
+
     @JavascriptInterface
     public void payWx(String json) {//javascript:payjavascript.payWX
-        Log.d("javascript",json);
+        Log.d("javascript", json);
         if (!main.isPaySupported()){
             return;
         }
@@ -92,10 +88,10 @@ public class PayJavaScript {
             model.setNotify_url(OrderUtil.getNotifyUrl());//**是 通知地址
             model.setTrade_type(OrderUtil.getTradeType(mContext));//**是 交易类型
             //model.setLimit_pay(json.optString("limit_pay"));//否 指定支付方式
-            model.setSign(OrderUtil.getSign(mContext,model));//**是 签名
+            model.setSign(OrderUtil.getSign(mContext, model));//**是 签名
             XStream xStream = new XStream();
             xStream.autodetectAnnotations(true);
-            xml = xStream.toXML(model);
+            xml = xStream.toXML(model).replace("&nbsp&","_");
             LogUtil.d("xml",xml);
             return xml;
         } catch (JSONException e) {
@@ -130,31 +126,25 @@ public class PayJavaScript {
                     req.prepayId		= model.getPrepay_id();//预支付交易会话ID
                     req.nonceStr		= model.getNonce_str();//随机字符串
                     req.timeStamp		= OrderUtil.getTimeStamp();//时间戳(北京时间)
-                    req.packageValue	= "Sign=WXPay";//扩展字段 暂填写固定值Sign=WXPay
-                    req.sign			= model.getSign();//签名
-                    //req.extData			= "app data"; // optional
+                    req.packageValue	= OrderUtil.getPackageValue(mContext);//扩展字段 暂填写固定值Sign=WXPay
+                    req.sign			= OrderUtil.getSign(mContext, model);//签名
+                    req.extData			= "app data"; // optional
                     ToastUtil.makeText(mContext, "正在调起支付...");
                     // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+                    main.getWxapi().registerApp(OrderUtil.getAppid(mContext));
                     main.getWxapi().sendReq(req);
                 }else{
-                    Log.d("PAY_POST", "返回错误"+model.getReturn_msg());
-                    ToastUtil.makeText(mContext, "返回错误" + model.getReturn_msg());
+                    Log.d("PAY_POST", "返回错误" + model.getReturn_msg());
+                   // ToastUtil.makeText(mContext, "返回错误" + model.getReturn_msg());
                 }
             }else{
                 Log.d("PAY_POST", "服务器请求错误");
-                ToastUtil.makeText(mContext, "服务器请求错误");
+                //ToastUtil.makeText(mContext, "服务器请求错误");
             }
         }catch(Exception e){
-            Log.e("PAY_POST", "异常："+e.getMessage());
-            ToastUtil.makeText(mContext, "异常：" + e.getMessage());
+            Log.e("PAY_POST", "异常：" + e.getMessage());
+            //ToastUtil.makeText(mContext, "异常：" + e.getMessage());
         }
-    }
-
-
-    @JavascriptInterface
-    public void payAlipay(String json) {//javascript:payjavascript.payAlipay
-
-
     }
 
     public void testWxOrder(){
