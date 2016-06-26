@@ -131,7 +131,6 @@ public class PayJavaScript {
                     req.extData			= "app data"; // optional
                     ToastUtil.makeText(mContext, "正在调起支付...");
                     // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
-                    main.getWxapi().registerApp(OrderUtil.getAppid(mContext));
                     main.getWxapi().sendReq(req);
                 }else{
                     Log.d("PAY_POST", "返回错误" + model.getReturn_msg());
