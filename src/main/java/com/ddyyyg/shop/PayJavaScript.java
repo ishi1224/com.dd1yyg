@@ -7,6 +7,7 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import com.ddyyyg.shop.model.PayModel;
+import com.ddyyyg.shop.model.PayReqModel;
 import com.ddyyyg.shop.model.PayReturnModel;
 import com.ddyyyg.shop.utils.HttpUtil;
 import com.ddyyyg.shop.utils.LogUtil;
@@ -74,7 +75,7 @@ public class PayJavaScript {
             model.setAppid(OrderUtil.getAppid(mContext));//**是 应用ID
             model.setMch_id(OrderUtil.getMacid(mContext)/*"1356293102"*/);//**是 商户号
             //model.setDevice_info("");//否 设备号
-            model.setNonce_str(OrderUtil.getNonceStr());//**是 随机字符串
+            model.setNonce_str(OrderUtil.getNonceStr(mContext));//**是 随机字符串
             model.setBody("测试商品test");//**是 商品描述***************
             //model.setDetail(json.optString("detail"));//否 商品详情
             //model.setAttach(json.optString("attach"));//否 附加数据
@@ -124,12 +125,22 @@ public class PayJavaScript {
                     req.appId			= model.getAppid();//应用ID
                     req.partnerId		= OrderUtil.getMacid(mContext);//商户号
                     req.prepayId		= model.getPrepay_id();//预支付交易会话ID
-                    req.nonceStr		= model.getNonce_str();//随机字符串
+                    req.nonceStr		= OrderUtil.getNonceStr(mContext);//随机字符串
                     req.timeStamp		= OrderUtil.getTimeStamp();//时间戳(北京时间)
                     req.packageValue	= OrderUtil.getPackageValue(mContext);//扩展字段 暂填写固定值Sign=WXPay
-                    req.sign			= OrderUtil.getSign(mContext, model);//签名
+
+                    PayReqModel payReq = new PayReqModel();
+                    payReq.setAppid(req.appId);
+                    payReq.setPartnerid(req.partnerId);
+                    payReq.setPrepayid(req.prepayId);
+                    payReq.setNoncestr(req.nonceStr);
+                    payReq.setTimestamp(req.timeStamp);
+                    payReq.setPackageValue(req.packageValue);
+                    req.sign			= OrderUtil.getSign(mContext, payReq);//签名
+
                     req.extData			= "app data"; // optional
                     ToastUtil.makeText(mContext, "正在调起支付...");
+                    LogUtil.d("req",payReq.toString());
                     // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
                     main.getWxapi().sendReq(req);
                 }else{

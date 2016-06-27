@@ -116,6 +116,24 @@ com.ddyyyg.shop.model.PayModel: java.lang.String getNotify_url()
 com.ddyyyg.shop.model.PayModel: java.lang.String getTrade_type()
 com.ddyyyg.shop.model.PayModel: java.lang.String getLimit_pay()
 com.ddyyyg.shop.model.PayModel: java.lang.String toString()
+com.ddyyyg.shop.model.PayReqModel
+com.ddyyyg.shop.model.PayReqModel: java.lang.String partnerId
+com.ddyyyg.shop.model.PayReqModel: java.lang.String prepayId
+com.ddyyyg.shop.model.PayReqModel: java.lang.String nonceStr
+com.ddyyyg.shop.model.PayReqModel: java.lang.String timeStamp
+com.ddyyyg.shop.model.PayReqModel: java.lang.String packageValue
+com.ddyyyg.shop.model.PayReqModel: PayReqModel()
+com.ddyyyg.shop.model.PayReqModel: void setPartnerId(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setPrepayId(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setNonceStr(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setTimeStamp(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setPackageValue(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getPartnerId()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getPrepayId()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getNonceStr()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getTimeStamp()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getPackageValue()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String toString()
 com.ddyyyg.shop.model.PayReturnModel
 com.ddyyyg.shop.model.PayReturnModel: java.lang.String return_code
 com.ddyyyg.shop.model.PayReturnModel: java.lang.String return_msg
@@ -157,6 +175,9 @@ com.ddyyyg.shop.model.PayReturnModel: java.lang.String getPrepay_id()
 com.ddyyyg.shop.model.PayReturnModel: java.lang.String toString()
 com.ddyyyg.shop.receiver.AppRegister
 com.ddyyyg.shop.receiver.AppRegister: AppRegister()
+com.ddyyyg.shop.utils.SPUtils: SPUtils()
+com.ddyyyg.shop.utils.SPUtils: void putString(android.content.Context,java.lang.String,java.lang.String)
+com.ddyyyg.shop.utils.SPUtils: java.lang.String getString(android.content.Context,java.lang.String,java.lang.String)
 com.ddyyyg.shop.view.NavigationBar
 com.ddyyyg.shop.view.NavigationBar: NavigationBar(android.content.Context)
 com.ddyyyg.shop.view.NavigationBar: NavigationBar(android.content.Context,android.util.AttributeSet)

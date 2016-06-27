@@ -5,7 +5,7 @@ import android.content.Context;
 import com.ddyyyg.shop.Constants;
 import com.ddyyyg.shop.R;
 import com.ddyyyg.shop.model.PayModel;
-import com.ddyyyg.shop.model.PayReturnModel;
+import com.ddyyyg.shop.model.PayReqModel;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -31,8 +31,14 @@ public final class OrderUtil {
     }
 
     //**是 随机字符串
-    public static final String getNonceStr(){
-        return MD5.d(Math.random()).toUpperCase();
+    public static final String getNonceStr(Context context){
+        String nonceStr = (String)SPUtils.getString(context, "sp_nonce_str", "");
+        if (nonceStr == null || nonceStr.length() == 0){
+            nonceStr = MD5.d(Math.random()).toUpperCase();
+            SPUtils.putString(context, "sp_nonce_str", nonceStr);
+            return nonceStr;
+        }
+        return nonceStr;
     }
 
     //**是 商户订单号
@@ -70,7 +76,7 @@ public final class OrderUtil {
     }
 
     //**是 签名 拉起微信支付
-    public static final String getSign(Context context,PayReturnModel model){
+    public static final String getSign(Context context,PayReqModel model){
         Map<String,String> m = M(model);
         Set<String> keySet = m.keySet();
         List<String> keys = new ArrayList<String>(keySet);
@@ -104,7 +110,7 @@ public final class OrderUtil {
     }
 
     //分装参数集合
-    private static final Map<String,String> M(PayReturnModel model){
+    private static final Map<String,String> M(PayReqModel model){
         Map<String,String> m = null;
         try {
             m = new HashMap<String, String>();
@@ -133,7 +139,10 @@ public final class OrderUtil {
         for (String key:keys) {
             params = params.append(key).append("=").append(m.get(key)).append("&");
         }
-        params.append("key=").append(context.getResources().getString(R.string.API_SECRET_KEY));
+        params = params.append("key=").append(context.getResources().getString(R.string.API_SECRET_KEY));
+        if (!keys.contains("appid")){
+            return params.substring(0,params.lastIndexOf("&key="));
+        }
         return params.toString();
     }
     //**是 时间戳(北京时间)

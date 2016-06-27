@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ddyyyg.shop.R;
+import com.ddyyyg.shop.utils.SPUtils;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -45,6 +46,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onResp(BaseResp resp) {
+        SPUtils.putString(this,"sp_nonce_str","");
         Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
 
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {

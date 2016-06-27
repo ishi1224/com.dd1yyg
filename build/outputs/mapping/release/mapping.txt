@@ -146,6 +146,24 @@ com.ddyyyg.shop.model.PayModel -> com.ddyyyg.shop.model.PayModel:
     java.lang.String getTrade_type() -> getTrade_type
     java.lang.String getLimit_pay() -> getLimit_pay
     java.lang.String toString() -> toString
+com.ddyyyg.shop.model.PayReqModel -> com.ddyyyg.shop.model.PayReqModel:
+    java.lang.String partnerId -> partnerId
+    java.lang.String prepayId -> prepayId
+    java.lang.String nonceStr -> nonceStr
+    java.lang.String timeStamp -> timeStamp
+    java.lang.String packageValue -> packageValue
+    void <init>() -> <init>
+    void setPartnerId(java.lang.String) -> setPartnerId
+    void setPrepayId(java.lang.String) -> setPrepayId
+    void setNonceStr(java.lang.String) -> setNonceStr
+    void setTimeStamp(java.lang.String) -> setTimeStamp
+    void setPackageValue(java.lang.String) -> setPackageValue
+    java.lang.String getPartnerId() -> getPartnerId
+    java.lang.String getPrepayId() -> getPrepayId
+    java.lang.String getNonceStr() -> getNonceStr
+    java.lang.String getTimeStamp() -> getTimeStamp
+    java.lang.String getPackageValue() -> getPackageValue
+    java.lang.String toString() -> toString
 com.ddyyyg.shop.model.PayReturnModel -> com.ddyyyg.shop.model.PayReturnModel:
     java.lang.String return_code -> return_code
     java.lang.String return_msg -> return_msg
@@ -237,23 +255,27 @@ com.ddyyyg.shop.utils.MD5 -> com.ddyyyg.shop.a.i:
 com.ddyyyg.shop.utils.OrderUtil -> com.ddyyyg.shop.a.j:
     java.lang.String getAppid(android.content.Context) -> a
     java.lang.String getMacid(android.content.Context) -> b
-    java.lang.String getNonceStr() -> a
-    java.lang.String getOutTradeNo() -> b
-    java.lang.String getSpbillCreateIp() -> c
-    java.lang.String getNotifyUrl() -> d
-    java.lang.String getTradeType(android.content.Context) -> c
-    java.lang.String getPackageValue(android.content.Context) -> d
+    java.lang.String getNonceStr(android.content.Context) -> c
+    java.lang.String getOutTradeNo() -> a
+    java.lang.String getSpbillCreateIp() -> b
+    java.lang.String getNotifyUrl() -> c
+    java.lang.String getTradeType(android.content.Context) -> d
+    java.lang.String getPackageValue(android.content.Context) -> e
     java.lang.String getSign(android.content.Context,com.ddyyyg.shop.model.PayModel) -> a
-    java.lang.String getSign(android.content.Context,com.ddyyyg.shop.model.PayReturnModel) -> a
+    java.lang.String getSign(android.content.Context,com.ddyyyg.shop.model.PayReqModel) -> a
     java.util.Map M(com.ddyyyg.shop.model.PayModel) -> a
-    java.util.Map M(com.ddyyyg.shop.model.PayReturnModel) -> a
+    java.util.Map M(com.ddyyyg.shop.model.PayReqModel) -> a
     java.lang.String Splice(android.content.Context,java.util.List,java.util.Map) -> a
-    java.lang.String getTimeStamp() -> e
-com.ddyyyg.shop.utils.TimeUtil -> com.ddyyyg.shop.a.k:
+    java.lang.String getTimeStamp() -> d
+com.ddyyyg.shop.utils.SPUtils -> com.ddyyyg.shop.a.k:
+    void <init>() -> <init>
+    void putString(android.content.Context,java.lang.String,java.lang.String) -> putString
+    java.lang.String getString(android.content.Context,java.lang.String,java.lang.String) -> getString
+com.ddyyyg.shop.utils.TimeUtil -> com.ddyyyg.shop.a.l:
     java.lang.String getOutTradeNo() -> a
     java.lang.String getCurrentTime(java.lang.String) -> a
     java.lang.String Date2TimeStamp() -> b
-com.ddyyyg.shop.utils.ToastUtil -> com.ddyyyg.shop.a.l:
+com.ddyyyg.shop.utils.ToastUtil -> com.ddyyyg.shop.a.m:
     void makeText(android.content.Context,java.lang.String) -> a
 com.ddyyyg.shop.view.NavigationBar -> com.ddyyyg.shop.view.NavigationBar:
     android.content.Context context -> a
