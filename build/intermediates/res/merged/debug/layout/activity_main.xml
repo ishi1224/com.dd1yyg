@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ddyyg.shop.MainActivity">
+    tools:context="com.ddyyyg.shop.MainActivity">
 
     <com.ddyyyg.shop.view.NavigationBar
         android:id="@+id/nav"

@@ -12,7 +12,9 @@ import com.ddyyyg.shop.model.PayReturnModel;
 import com.ddyyyg.shop.utils.HttpUtil;
 import com.ddyyyg.shop.utils.LogUtil;
 import com.ddyyyg.shop.utils.OrderUtil;
+import com.ddyyyg.shop.utils.SPUtils;
 import com.ddyyyg.shop.utils.ToastUtil;
+import com.ddyyyg.shop.wxapi.WXPayEntryActivity;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.thoughtworks.xstream.XStream;
 
@@ -28,15 +30,15 @@ import java.util.Map;
  */
 public class PayJavaScript {
 
-    private Context mContext;
-    private Handler mHandler;
-    private MainActivity main;
+    private Context content;
+    private Handler handler;
+    private WXPayEntryActivity mainActivity;
 
     public PayJavaScript(Context context, Handler handler) {
         super();
-        this.mContext = context;
-        this.mHandler = handler;
-        this.main = (MainActivity) context;
+        this.content = context;
+        this.handler = handler;
+        this.mainActivity = (WXPayEntryActivity) context;
     }
 
     @JavascriptInterface
@@ -48,22 +50,23 @@ public class PayJavaScript {
     @JavascriptInterface
     public void payWx(String json) {//javascript:payjavascript.payWX
         Log.d("javascript", json);
-        if (!main.isPaySupported()){
+        if (!mainActivity.isPaySupported()){
             return;
         }
-        if (main.isLock()) {
+
+        if (mainActivity.isLock()) {
             //1、生成订单，返回订单号 2、使用微信支付订单
-            main.setLock(true);
+            mainActivity.setLock(true);
             wxPay(genStringEntity("{\"appid\"="+json+"}"));
             //testWxOrder();
         }
 
-        mHandler.postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                main.setLock(false);
+                mainActivity.setLock(false);
             }
-        },10*1000);
+        }, 10 * 1000);
     }
 
     //拼接统一下单的ValueNamePair
@@ -72,10 +75,10 @@ public class PayJavaScript {
         try {
             JSONObject json = new JSONObject(params);
             PayModel model = new PayModel();
-            model.setAppid(OrderUtil.getAppid(mContext));//**是 应用ID
-            model.setMch_id(OrderUtil.getMacid(mContext)/*"1356293102"*/);//**是 商户号
+            model.setAppid(OrderUtil.getAppid(content));//**是 应用ID
+            model.setMch_id(OrderUtil.getMacid(content)/*"1356293102"*/);//**是 商户号
             //model.setDevice_info("");//否 设备号
-            model.setNonce_str(OrderUtil.getNonceStr(mContext));//**是 随机字符串
+            model.setNonce_str(OrderUtil.getNonceStr(content));//**是 随机字符串
             model.setBody("测试商品test");//**是 商品描述***************
             //model.setDetail(json.optString("detail"));//否 商品详情
             //model.setAttach(json.optString("attach"));//否 附加数据
@@ -87,9 +90,9 @@ public class PayJavaScript {
             //model.setTime_expire(json.optString("time_expire"));//否 交易结束时间
             //model.setGoods_tag(json.optString("goods_tag"));//否 商品标记
             model.setNotify_url(OrderUtil.getNotifyUrl());//**是 通知地址
-            model.setTrade_type(OrderUtil.getTradeType(mContext));//**是 交易类型
+            model.setTrade_type(OrderUtil.getTradeType(content));//**是 交易类型
             //model.setLimit_pay(json.optString("limit_pay"));//否 指定支付方式
-            model.setSign(OrderUtil.getSign(mContext, model));//**是 签名
+            model.setSign(OrderUtil.getSign(content, model));//**是 签名
             XStream xStream = new XStream();
             xStream.autodetectAnnotations(true);
             xml = xStream.toXML(model).replace("&nbsp&","_");
@@ -102,32 +105,31 @@ public class PayJavaScript {
     }
 
     private void wxPay(String entity){
-        ToastUtil.makeText(mContext, "获取订单中...");
+        ToastUtil.makeText(content, "获取订单中...");
         try{
             byte[] buf = HttpUtil.httpPost(Constants.GEN_URL, entity);
             if (buf != null && buf.length > 0) {
                 String content = new String(buf);
-                LogUtil.e("get server pay params:", content);
                 XStream xStream = new XStream();
                 xStream.autodetectAnnotations(true);
-                xStream.alias("xml",PayReturnModel.class);
+                xStream.alias("xml", PayReturnModel.class);
                 PayReturnModel model = (PayReturnModel)xStream.fromXML(content);
                 if(null != model){
                     if (Constants.ERR_CODE.equals(model.getReturn_code())){
-                        ToastUtil.makeText(mContext,model.getReturn_msg());
+                        ToastUtil.makeText(this.content,model.getReturn_msg());
                         return;
                     }
                     if (Constants.ERR_CODE.equals(model.getResult_code())){
-                        ToastUtil.makeText(mContext,model.getErr_code_des());
+                        ToastUtil.makeText(this.content,model.getErr_code_des());
                         return;
                     }
                     PayReq req = new PayReq();
-                    req.appId			= model.getAppid();//应用ID
-                    req.partnerId		= OrderUtil.getMacid(mContext);//商户号
+                    req.appId			= OrderUtil.getAppid(this.content);//应用ID
+                    req.partnerId		= OrderUtil.getMacid(this.content);//商户号
                     req.prepayId		= model.getPrepay_id();//预支付交易会话ID
-                    req.nonceStr		= OrderUtil.getNonceStr(mContext);//随机字符串
-                    req.timeStamp		= OrderUtil.getTimeStamp();//时间戳(北京时间)
-                    req.packageValue	= OrderUtil.getPackageValue(mContext);//扩展字段 暂填写固定值Sign=WXPay
+                    req.nonceStr		= OrderUtil.getNonceStr(this.content);//随机字符串
+                    req.timeStamp		= OrderUtil.getTimeStamp();//时间戳(北京时间)（10位长度的）
+                    req.packageValue	= OrderUtil.getPackageValue(this.content);//扩展字段 暂填写固定值Sign=WXPay
 
                     PayReqModel payReq = new PayReqModel();
                     payReq.setAppid(req.appId);
@@ -136,31 +138,29 @@ public class PayJavaScript {
                     payReq.setNoncestr(req.nonceStr);
                     payReq.setTimestamp(req.timeStamp);
                     payReq.setPackageValue(req.packageValue);
-                    req.sign			= OrderUtil.getSign(mContext, payReq);//签名
+                    req.sign = OrderUtil.getSign(this.content, payReq);//签名
 
-                    req.extData			= "app data"; // optional
-                    ToastUtil.makeText(mContext, "正在调起支付...");
-                    LogUtil.d("req",payReq.toString());
-                    // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
-                    main.getWxapi().sendReq(req);
+                    ToastUtil.makeText(this.content, "正在调起支付...");
+                    SPUtils.putString(this.content, "sp_nonce_str", "");
+                    mainActivity.getWxapi().sendReq(req);
                 }else{
                     Log.d("PAY_POST", "返回错误" + model.getReturn_msg());
-                   // ToastUtil.makeText(mContext, "返回错误" + model.getReturn_msg());
+                   // ToastUtil.makeText(content, "返回错误" + model.getReturn_msg());
                 }
             }else{
                 Log.d("PAY_POST", "服务器请求错误");
-                //ToastUtil.makeText(mContext, "服务器请求错误");
+                //ToastUtil.makeText(content, "服务器请求错误");
             }
         }catch(Exception e){
             Log.e("PAY_POST", "异常：" + e.getMessage());
-            //ToastUtil.makeText(mContext, "异常：" + e.getMessage());
+            //ToastUtil.makeText(content, "异常：" + e.getMessage());
         }
     }
 
     public void testWxOrder(){
         //统一下单
         String url = "http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php?plat=android";
-        Toast.makeText(mContext, "获取订单中...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(content, "获取订单中...", Toast.LENGTH_SHORT).show();
         try{
             byte[] buf = HttpUtil.httpGet(url);
             if (buf != null && buf.length > 0) {
@@ -169,8 +169,7 @@ public class PayJavaScript {
                 JSONObject json = new JSONObject(content);
                 if(null != json && !json.has("retcode") ){
                     PayReq req = new PayReq();
-                    req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
-                    //req.appId			= json.getString("appid");//应用ID
+                    req.appId			= json.getString("appid");//应用ID
                     req.partnerId		= json.getString("partnerid");//商户号
                     req.prepayId		= json.getString("prepayid");//预支付交易会话ID
                     req.nonceStr		= json.getString("noncestr");//随机字符串
@@ -178,20 +177,20 @@ public class PayJavaScript {
                     req.packageValue	= json.getString("package");//扩展字段 Sign=WXPay
                     req.sign			= json.getString("sign");//签名
                     req.extData			= "app data"; // optional
-                    Toast.makeText(mContext, "正常调起支付", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.content, "正常调起支付", Toast.LENGTH_SHORT).show();
                     // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
-                    main.getWxapi().sendReq(req);
+                    mainActivity.getWxapi().sendReq(req);
                 }else{
                     Log.d("PAY_GET", "返回错误"+json.getString("retmsg"));
-                    Toast.makeText(mContext, "返回错误"+json.getString("retmsg"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.content, "返回错误"+json.getString("retmsg"), Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Log.d("PAY_GET", "服务器请求错误");
-                Toast.makeText(mContext, "服务器请求错误", Toast.LENGTH_SHORT).show();
+                Toast.makeText(content, "服务器请求错误", Toast.LENGTH_SHORT).show();
             }
         }catch(Exception e){
             Log.e("PAY_GET", "异常："+e.getMessage());
-            Toast.makeText(mContext, "异常："+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(content, "异常："+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

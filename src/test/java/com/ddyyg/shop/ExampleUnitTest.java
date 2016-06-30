@@ -1,4 +1,4 @@
-package com.ddyyg.shop;
+package com.ddyyyg.shop;
 
 import org.junit.Test;
 

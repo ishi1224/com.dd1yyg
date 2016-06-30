@@ -125,7 +125,7 @@ public final class OrderUtil {
                 if ("null".equals(value) || value == null || value.trim().length() == 0){
                     continue;
                 }
-                m.put(fieldName,value);
+                m.put("packageValue".equals(fieldName)?"package":fieldName,value);
             }
             return m;
         } catch (IllegalAccessException e) {
@@ -140,9 +140,7 @@ public final class OrderUtil {
             params = params.append(key).append("=").append(m.get(key)).append("&");
         }
         params = params.append("key=").append(context.getResources().getString(R.string.API_SECRET_KEY));
-        if (!keys.contains("appid")){
-            return params.substring(0,params.lastIndexOf("&key="));
-        }
+        LogUtil.d("parms",params.toString());
         return params.toString();
     }
     //**是 时间戳(北京时间)

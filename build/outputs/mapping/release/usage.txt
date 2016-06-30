@@ -8,6 +8,50 @@ android.support.multidex.MultiDexExtractor
 android.support.multidex.MultiDexExtractor$1
 android.support.multidex.ZipUtil
 android.support.multidex.ZipUtil$CentralDirectory
+com.ddyyg.app.App
+com.ddyyg.app.AppConfig
+com.ddyyg.app.AppContext
+com.ddyyg.shop.BuildConfig
+com.ddyyg.shop.Constants
+com.ddyyg.shop.Constants$ShowMsgActivity
+com.ddyyg.shop.PayJavaScript
+com.ddyyg.shop.PayJavaScript$1
+com.ddyyg.shop.R
+com.ddyyg.shop.R$attr
+com.ddyyg.shop.R$color
+com.ddyyg.shop.R$dimen
+com.ddyyg.shop.R$drawable
+com.ddyyg.shop.R$id
+com.ddyyg.shop.R$layout
+com.ddyyg.shop.R$mipmap
+com.ddyyg.shop.R$string
+com.ddyyg.shop.R$style
+com.ddyyg.shop.model.BaseModel
+com.ddyyg.shop.model.PayModel
+com.ddyyg.shop.model.PayReqModel
+com.ddyyg.shop.model.PayReturnModel
+com.ddyyg.shop.receiver.AppRegister
+com.ddyyg.shop.utils.AppUtil
+com.ddyyg.shop.utils.DensityUtil
+com.ddyyg.shop.utils.EncryptUtils
+com.ddyyg.shop.utils.FileHelper
+com.ddyyg.shop.utils.HttpUtil
+com.ddyyg.shop.utils.HttpUtil$SSLSocketFactoryEx
+com.ddyyg.shop.utils.HttpUtil$SSLSocketFactoryEx$1
+com.ddyyg.shop.utils.LogUtil
+com.ddyyg.shop.utils.LogUtil$1
+com.ddyyg.shop.utils.MD5
+com.ddyyg.shop.utils.OrderUtil
+com.ddyyg.shop.utils.SPUtils
+com.ddyyg.shop.utils.TimeUtil
+com.ddyyg.shop.utils.ToastUtil
+com.ddyyg.shop.view.NavigationBar
+com.ddyyg.shop.wxapi.WXPayEntryActivity
+com.ddyyg.shop.wxapi.WXPayEntryActivity$1
+com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient
+com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$1
+com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$2
+com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebViewClient
 com.ddyyyg.app.App:
     private static final int REQUEST_ENABLE_BT
     35:35:public static com.ddyyyg.app.App getApplication()
@@ -29,9 +73,6 @@ com.ddyyyg.app.AppContext
 com.ddyyyg.shop.BuildConfig
 com.ddyyyg.shop.Constants
 com.ddyyyg.shop.Constants$ShowMsgActivity
-com.ddyyyg.shop.MainActivity:
-    private static final java.lang.String ERROR_PAGE
-    private static final java.lang.String APP_CACAHE_DIRNAME
 com.ddyyyg.shop.R
 com.ddyyyg.shop.R$attr
 com.ddyyyg.shop.R$color
@@ -116,22 +157,24 @@ com.ddyyyg.shop.utils.TimeUtil:
     private static final int SECOUND_OF_HOUR
     private static final int SECOUND_OF_MIN
     private static final java.lang.String TIME_FORMAT_TRADE_NO
-    16:16:public TimeUtil()
-    76:76:public static java.lang.String formatTime(long,java.lang.String)
-    81:81:public static boolean isValidDate(java.lang.String,java.lang.String)
-    86:94:public static long parseTime(java.lang.String,java.lang.String)
-    98:98:public static int getDaysBetween(java.lang.String,java.lang.String,java.lang.String)
-    103:117:public static int getDaysBetween(long,long)
-    124:127:public static java.lang.String TimeStamp2Date(java.lang.String,java.lang.String)
-    145:150:public static long getTodayTimeMillis()
-    154:162:public static java.lang.String getTimeByLong4Msg(long)
-    171:180:public static java.lang.String getDefaultTime()
-    191:197:public static java.lang.String getTimeByLong(java.lang.String)
-    204:210:public static java.lang.String replaceBlank(java.lang.String)
-    218:220:public static long parseLong(java.lang.String,long)
-    230:230:public static boolean isValidate(java.lang.String)
-    238:240:public static java.lang.String get15TimeStap()
-    250:285:public static java.lang.String durationTime(java.lang.String)
+    17:17:public TimeUtil()
+    77:77:public static java.lang.String formatTime(long,java.lang.String)
+    82:82:public static boolean isValidDate(java.lang.String,java.lang.String)
+    87:95:public static long parseTime(java.lang.String,java.lang.String)
+    99:99:public static int getDaysBetween(java.lang.String,java.lang.String,java.lang.String)
+    104:118:public static int getDaysBetween(long,long)
+    125:128:public static java.lang.String TimeStamp2Date(java.lang.String,java.lang.String)
+    146:151:public static long getTodayTimeMillis()
+    155:163:public static java.lang.String getTimeByLong4Msg(long)
+    172:181:public static java.lang.String getDefaultTime()
+    192:198:public static java.lang.String getTimeByLong(java.lang.String)
+    205:211:public static java.lang.String replaceBlank(java.lang.String)
+    219:221:public static long parseLong(java.lang.String,long)
+    231:231:public static boolean isValidate(java.lang.String)
+    239:241:public static java.lang.String get15TimeStap()
+    251:286:public static java.lang.String durationTime(java.lang.String)
+    302:302:public static java.lang.String getBangaloreTime()
+    310:310:public static java.lang.String getNewyorkTime()
 com.ddyyyg.shop.utils.ToastUtil:
     9:9:public ToastUtil()
 com.ddyyyg.shop.view.NavigationBar:
@@ -144,6 +187,8 @@ com.ddyyyg.shop.view.NavigationBar:
     230:231:public void setRightVisible()
 com.ddyyyg.shop.wxapi.WXPayEntryActivity:
     private static final java.lang.String TAG
+    private static final java.lang.String ERROR_PAGE
+    private static final java.lang.String APP_CACAHE_DIRNAME
 com.tencent.mm.sdk.constants.Build
 com.tencent.mm.sdk.constants.ConstantsAPI
 com.tencent.mm.sdk.constants.ConstantsAPI$Token

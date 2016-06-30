@@ -1,15 +1,12 @@
 # view AndroidManifest.xml #generated:23
 -keep class com.ddyyyg.app.App { <init>(...); }
 
-# view AndroidManifest.xml #generated:30
--keep class com.ddyyyg.shop.MainActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:53
+# view AndroidManifest.xml #generated:49
 -keep class com.ddyyyg.shop.receiver.AppRegister { <init>(...); }
 
 # view res/layout/activity_main.xml #generated:9
 -keep class com.ddyyyg.shop.view.NavigationBar { <init>(...); }
 
-# view AndroidManifest.xml #generated:48
+# view AndroidManifest.xml #generated:30
 -keep class com.ddyyyg.shop.wxapi.WXPayEntryActivity { <init>(...); }
 

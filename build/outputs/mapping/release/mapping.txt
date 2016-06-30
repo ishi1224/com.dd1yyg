@@ -13,67 +13,10 @@ com.ddyyyg.app.AppConfig -> com.ddyyyg.app.a:
     int uiWidth -> c
     int uiHeight -> d
     void <clinit>() -> <clinit>
-com.ddyyyg.shop.MainActivity -> com.ddyyyg.shop.MainActivity:
-    android.widget.ProgressBar mBar -> a
-    android.webkit.WebView mWv -> b
-    android.os.Handler mHandler -> c
-    java.util.List tabUrls -> d
-    com.ddyyyg.shop.view.NavigationBar mNavBar -> e
-    com.tencent.mm.sdk.openapi.IWXAPI iwxapi -> f
-    boolean lock -> g
-    long mExitTime -> h
-    void <init>() -> <init>
-    void onCreate(android.os.Bundle) -> onCreate
-    boolean isPaySupported() -> a
-    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
-    boolean isIndex() -> g
-    android.widget.ProgressBar getmBar() -> h
-    android.webkit.WebView getmWv() -> i
-    android.os.Handler getmHandler() -> b
-    com.ddyyyg.shop.view.NavigationBar getmNavBar() -> c
-    com.tencent.mm.sdk.openapi.IWXAPI getWxapi() -> d
-    void regToWx() -> j
-    boolean isLock() -> e
-    void setLock(boolean) -> a
-    java.util.List getTabUrls() -> f
-    android.webkit.WebView access$000(com.ddyyyg.shop.MainActivity) -> a
-    android.widget.ProgressBar access$100(com.ddyyyg.shop.MainActivity) -> b
-com.ddyyyg.shop.MainActivity$1 -> com.ddyyyg.shop.a:
-    com.ddyyyg.shop.MainActivity this$0 -> a
-    void <init>(com.ddyyyg.shop.MainActivity) -> <init>
-    void onClick(android.view.View) -> onClick
-com.ddyyyg.shop.MainActivity$PayWebChromeClient -> com.ddyyyg.shop.b:
-    com.ddyyyg.shop.MainActivity this$0 -> a
-    void <init>(com.ddyyyg.shop.MainActivity) -> <init>
-    void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
-    void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
-    boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
-    boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
-    boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
-    boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
-    void <init>(com.ddyyyg.shop.MainActivity,com.ddyyyg.shop.MainActivity$1) -> <init>
-com.ddyyyg.shop.MainActivity$PayWebChromeClient$1 -> com.ddyyyg.shop.c:
-    com.ddyyyg.shop.MainActivity$PayWebChromeClient this$1 -> a
-    void <init>(com.ddyyyg.shop.MainActivity$PayWebChromeClient) -> <init>
-    void onClick(android.content.DialogInterface,int) -> onClick
-com.ddyyyg.shop.MainActivity$PayWebChromeClient$2 -> com.ddyyyg.shop.d:
-    android.webkit.JsResult val$result -> a
-    com.ddyyyg.shop.MainActivity$PayWebChromeClient this$1 -> b
-    void <init>(com.ddyyyg.shop.MainActivity$PayWebChromeClient,android.webkit.JsResult) -> <init>
-    void onClick(android.content.DialogInterface,int) -> onClick
-com.ddyyyg.shop.MainActivity$PayWebViewClient -> com.ddyyyg.shop.e:
-    com.ddyyyg.shop.MainActivity this$0 -> a
-    void <init>(com.ddyyyg.shop.MainActivity) -> <init>
-    void onLoadResource(android.webkit.WebView,java.lang.String) -> onLoadResource
-    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
-    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
-    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
-    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
-    void <init>(com.ddyyyg.shop.MainActivity,com.ddyyyg.shop.MainActivity$1) -> <init>
-com.ddyyyg.shop.PayJavaScript -> com.ddyyyg.shop.f:
-    android.content.Context mContext -> a
-    android.os.Handler mHandler -> b
-    com.ddyyyg.shop.MainActivity main -> c
+com.ddyyyg.shop.PayJavaScript -> com.ddyyyg.shop.a:
+    android.content.Context content -> a
+    android.os.Handler handler -> b
+    com.ddyyyg.shop.wxapi.WXPayEntryActivity mainActivity -> c
     void <init>(android.content.Context,android.os.Handler) -> <init>
     void payAlipay(java.lang.String) -> payAlipay
     void payWx(java.lang.String) -> payWx
@@ -82,8 +25,8 @@ com.ddyyyg.shop.PayJavaScript -> com.ddyyyg.shop.f:
     void testWxOrder() -> testWxOrder
     java.lang.String getErrorDes(java.lang.String) -> getErrorDes
     java.util.Map mapError() -> mapError
-    com.ddyyyg.shop.MainActivity access$000(com.ddyyyg.shop.PayJavaScript) -> a
-com.ddyyyg.shop.PayJavaScript$1 -> com.ddyyyg.shop.g:
+    com.ddyyyg.shop.wxapi.WXPayEntryActivity access$000(com.ddyyyg.shop.PayJavaScript) -> a
+com.ddyyyg.shop.PayJavaScript$1 -> com.ddyyyg.shop.b:
     com.ddyyyg.shop.PayJavaScript this$0 -> a
     void <init>(com.ddyyyg.shop.PayJavaScript) -> <init>
     void run() -> run
@@ -147,22 +90,25 @@ com.ddyyyg.shop.model.PayModel -> com.ddyyyg.shop.model.PayModel:
     java.lang.String getLimit_pay() -> getLimit_pay
     java.lang.String toString() -> toString
 com.ddyyyg.shop.model.PayReqModel -> com.ddyyyg.shop.model.PayReqModel:
-    java.lang.String partnerId -> partnerId
-    java.lang.String prepayId -> prepayId
-    java.lang.String nonceStr -> nonceStr
-    java.lang.String timeStamp -> timeStamp
+    java.lang.String appid -> appid
+    java.lang.String partnerid -> partnerid
+    java.lang.String prepayid -> prepayid
+    java.lang.String timestamp -> timestamp
     java.lang.String packageValue -> packageValue
+    java.lang.String noncestr -> noncestr
     void <init>() -> <init>
-    void setPartnerId(java.lang.String) -> setPartnerId
-    void setPrepayId(java.lang.String) -> setPrepayId
-    void setNonceStr(java.lang.String) -> setNonceStr
-    void setTimeStamp(java.lang.String) -> setTimeStamp
+    void setAppid(java.lang.String) -> setAppid
+    void setPartnerid(java.lang.String) -> setPartnerid
+    void setPrepayid(java.lang.String) -> setPrepayid
+    void setTimestamp(java.lang.String) -> setTimestamp
     void setPackageValue(java.lang.String) -> setPackageValue
-    java.lang.String getPartnerId() -> getPartnerId
-    java.lang.String getPrepayId() -> getPrepayId
-    java.lang.String getNonceStr() -> getNonceStr
-    java.lang.String getTimeStamp() -> getTimeStamp
+    void setNoncestr(java.lang.String) -> setNoncestr
+    java.lang.String getAppid() -> getAppid
+    java.lang.String getPartnerid() -> getPartnerid
+    java.lang.String getPrepayid() -> getPrepayid
+    java.lang.String getTimestamp() -> getTimestamp
     java.lang.String getPackageValue() -> getPackageValue
+    java.lang.String getNoncestr() -> getNoncestr
     java.lang.String toString() -> toString
 com.ddyyyg.shop.model.PayReturnModel -> com.ddyyyg.shop.model.PayReturnModel:
     java.lang.String return_code -> return_code
@@ -275,6 +221,8 @@ com.ddyyyg.shop.utils.TimeUtil -> com.ddyyyg.shop.a.l:
     java.lang.String getOutTradeNo() -> a
     java.lang.String getCurrentTime(java.lang.String) -> a
     java.lang.String Date2TimeStamp() -> b
+    java.lang.String getBeijingTime() -> c
+    java.lang.String getFormatedDateString(float) -> a
 com.ddyyyg.shop.utils.ToastUtil -> com.ddyyyg.shop.a.m:
     void makeText(android.content.Context,java.lang.String) -> a
 com.ddyyyg.shop.view.NavigationBar -> com.ddyyyg.shop.view.NavigationBar:
@@ -309,12 +257,65 @@ com.ddyyyg.shop.view.NavigationBar -> com.ddyyyg.shop.view.NavigationBar:
     void setLeftInVisible() -> a
     void setLeftVisible() -> b
 com.ddyyyg.shop.wxapi.WXPayEntryActivity -> com.ddyyyg.shop.wxapi.WXPayEntryActivity:
-    com.tencent.mm.sdk.openapi.IWXAPI api -> a
+    android.widget.ProgressBar mBar -> a
+    android.webkit.WebView mWv -> b
+    android.os.Handler mHandler -> c
+    java.util.List tabUrls -> d
+    com.ddyyyg.shop.view.NavigationBar mNavBar -> e
+    com.tencent.mm.sdk.openapi.IWXAPI iwxapi -> f
+    boolean lock -> g
+    long mExitTime -> h
     void <init>() -> <init>
-    void onCreate(android.os.Bundle) -> onCreate
-    void onNewIntent(android.content.Intent) -> onNewIntent
     void onReq(com.tencent.mm.sdk.modelbase.BaseReq) -> a
     void onResp(com.tencent.mm.sdk.modelbase.BaseResp) -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void onNewIntent(android.content.Intent) -> onNewIntent
+    boolean isPaySupported() -> a
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    boolean isIndex() -> g
+    android.widget.ProgressBar getmBar() -> h
+    android.webkit.WebView getWebView() -> i
+    android.os.Handler getmHandler() -> b
+    com.ddyyyg.shop.view.NavigationBar getNavigationBar() -> c
+    com.tencent.mm.sdk.openapi.IWXAPI getWxapi() -> d
+    void regToWx() -> j
+    boolean isLock() -> e
+    void setLock(boolean) -> a
+    java.util.List getTabUrls() -> f
+    android.webkit.WebView access$000(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> a
+    android.widget.ProgressBar access$100(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> b
+com.ddyyyg.shop.wxapi.WXPayEntryActivity$1 -> com.ddyyyg.shop.wxapi.a:
+    com.ddyyyg.shop.wxapi.WXPayEntryActivity this$0 -> a
+    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> <init>
+    void onClick(android.view.View) -> onClick
+com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient -> com.ddyyyg.shop.wxapi.b:
+    com.ddyyyg.shop.wxapi.WXPayEntryActivity this$0 -> a
+    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> <init>
+    void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
+    void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
+    boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
+    boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
+    boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
+    boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
+    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity,com.ddyyyg.shop.wxapi.WXPayEntryActivity$1) -> <init>
+com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$1 -> com.ddyyyg.shop.wxapi.c:
+    com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient this$1 -> a
+    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient) -> <init>
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$2 -> com.ddyyyg.shop.wxapi.d:
+    android.webkit.JsResult val$result -> a
+    com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient this$1 -> b
+    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient,android.webkit.JsResult) -> <init>
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebViewClient -> com.ddyyyg.shop.wxapi.e:
+    com.ddyyyg.shop.wxapi.WXPayEntryActivity this$0 -> a
+    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> <init>
+    void onLoadResource(android.webkit.WebView,java.lang.String) -> onLoadResource
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity,com.ddyyyg.shop.wxapi.WXPayEntryActivity$1) -> <init>
 com.tencent.mm.a.a -> com.a.a.a.a:
     java.lang.String a(byte[]) -> a
 com.tencent.mm.sdk.a -> com.a.a.b.a:

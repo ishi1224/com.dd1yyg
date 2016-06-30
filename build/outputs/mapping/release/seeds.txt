@@ -1,7 +1,74 @@
+com.ddyyg.shop.R$color: int black
+com.ddyyg.shop.R$color: int blue
+com.ddyyg.shop.R$color: int colorAccent
+com.ddyyg.shop.R$color: int colorPrimary
+com.ddyyg.shop.R$color: int colorPrimaryDark
+com.ddyyg.shop.R$color: int darkgrey
+com.ddyyg.shop.R$color: int grey
+com.ddyyg.shop.R$color: int lightgrey
+com.ddyyg.shop.R$color: int lightransparent
+com.ddyyg.shop.R$color: int navpage
+com.ddyyg.shop.R$color: int semitransparent
+com.ddyyg.shop.R$color: int toasterro
+com.ddyyg.shop.R$color: int transparent
+com.ddyyg.shop.R$color: int white
+com.ddyyg.shop.R$dimen: int activity_horizontal_margin
+com.ddyyg.shop.R$dimen: int activity_vertical_margin
+com.ddyyg.shop.R$drawable: int progressbar_style
+com.ddyyg.shop.R$id: int nav
+com.ddyyg.shop.R$id: int progress
+com.ddyyg.shop.R$id: int wv
+com.ddyyg.shop.R$layout: int activity_main
+com.ddyyg.shop.R$layout: int pay_result
+com.ddyyg.shop.R$mipmap: int appicon
+com.ddyyg.shop.R$mipmap: int back_arrow
+com.ddyyg.shop.R$mipmap: int ic_launcher
+com.ddyyg.shop.R$string: int API_SECRET_KEY
+com.ddyyg.shop.R$string: int APP_ID_WX
+com.ddyyg.shop.R$string: int MCH_ID_WX
+com.ddyyg.shop.R$string: int PACKAGEVALUE_WX
+com.ddyyg.shop.R$string: int TRADE_TYPE_WX
+com.ddyyg.shop.R$string: int app_back
+com.ddyyg.shop.R$string: int app_cancel
+com.ddyyg.shop.R$string: int app_continue
+com.ddyyg.shop.R$string: int app_delete
+com.ddyyg.shop.R$string: int app_edit
+com.ddyyg.shop.R$string: int app_find
+com.ddyyg.shop.R$string: int app_finish
+com.ddyyg.shop.R$string: int app_name
+com.ddyyg.shop.R$string: int app_nextstep
+com.ddyyg.shop.R$string: int app_ok
+com.ddyyg.shop.R$string: int app_prevstep
+com.ddyyg.shop.R$string: int app_save
+com.ddyyg.shop.R$string: int app_send
+com.ddyyg.shop.R$string: int app_set
+com.ddyyg.shop.R$string: int app_tip
+com.ddyyg.shop.R$string: int pay_result_callback_msg
+com.ddyyg.shop.R$string: int pay_result_tip
+com.ddyyg.shop.R$style: int AppTheme
+com.ddyyg.shop.R$style: int NavPage
+com.ddyyg.shop.model.BaseModel
+com.ddyyg.shop.model.PayModel
+com.ddyyg.shop.model.PayReqModel
+com.ddyyg.shop.model.PayReturnModel
+com.ddyyg.shop.view.NavigationBar: void setupViews(android.content.Context)
+com.ddyyg.shop.view.NavigationBar: void setTvLeft(java.lang.String)
+com.ddyyg.shop.view.NavigationBar: void setIvLeft(int)
+com.ddyyg.shop.view.NavigationBar: void setTvTitle(java.lang.String)
+com.ddyyg.shop.view.NavigationBar: void setIvTitle(int)
+com.ddyyg.shop.view.NavigationBar: void setTvRight(java.lang.String)
+com.ddyyg.shop.view.NavigationBar: void setIvRight(int)
+com.ddyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlLeft()
+com.ddyyg.shop.view.NavigationBar: android.widget.TextView getTvLeft()
+com.ddyyg.shop.view.NavigationBar: android.widget.ImageView getIvLeft()
+com.ddyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlTitle()
+com.ddyyg.shop.view.NavigationBar: android.widget.TextView getTvTitle()
+com.ddyyg.shop.view.NavigationBar: android.widget.ImageView getIvTitle()
+com.ddyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlRight()
+com.ddyyg.shop.view.NavigationBar: android.widget.TextView getTvRight()
+com.ddyyg.shop.view.NavigationBar: android.widget.ImageView getIvRight()
 com.ddyyyg.app.App
 com.ddyyyg.app.App: App()
-com.ddyyyg.shop.MainActivity
-com.ddyyyg.shop.MainActivity: MainActivity()
 com.ddyyyg.shop.PayJavaScript: PayJavaScript(android.content.Context,android.os.Handler)
 com.ddyyyg.shop.PayJavaScript: void payAlipay(java.lang.String)
 com.ddyyyg.shop.PayJavaScript: void payWx(java.lang.String)
@@ -117,22 +184,25 @@ com.ddyyyg.shop.model.PayModel: java.lang.String getTrade_type()
 com.ddyyyg.shop.model.PayModel: java.lang.String getLimit_pay()
 com.ddyyyg.shop.model.PayModel: java.lang.String toString()
 com.ddyyyg.shop.model.PayReqModel
-com.ddyyyg.shop.model.PayReqModel: java.lang.String partnerId
-com.ddyyyg.shop.model.PayReqModel: java.lang.String prepayId
-com.ddyyyg.shop.model.PayReqModel: java.lang.String nonceStr
-com.ddyyyg.shop.model.PayReqModel: java.lang.String timeStamp
+com.ddyyyg.shop.model.PayReqModel: java.lang.String appid
+com.ddyyyg.shop.model.PayReqModel: java.lang.String partnerid
+com.ddyyyg.shop.model.PayReqModel: java.lang.String prepayid
+com.ddyyyg.shop.model.PayReqModel: java.lang.String timestamp
 com.ddyyyg.shop.model.PayReqModel: java.lang.String packageValue
+com.ddyyyg.shop.model.PayReqModel: java.lang.String noncestr
 com.ddyyyg.shop.model.PayReqModel: PayReqModel()
-com.ddyyyg.shop.model.PayReqModel: void setPartnerId(java.lang.String)
-com.ddyyyg.shop.model.PayReqModel: void setPrepayId(java.lang.String)
-com.ddyyyg.shop.model.PayReqModel: void setNonceStr(java.lang.String)
-com.ddyyyg.shop.model.PayReqModel: void setTimeStamp(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setAppid(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setPartnerid(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setPrepayid(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: void setTimestamp(java.lang.String)
 com.ddyyyg.shop.model.PayReqModel: void setPackageValue(java.lang.String)
-com.ddyyyg.shop.model.PayReqModel: java.lang.String getPartnerId()
-com.ddyyyg.shop.model.PayReqModel: java.lang.String getPrepayId()
-com.ddyyyg.shop.model.PayReqModel: java.lang.String getNonceStr()
-com.ddyyyg.shop.model.PayReqModel: java.lang.String getTimeStamp()
+com.ddyyyg.shop.model.PayReqModel: void setNoncestr(java.lang.String)
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getAppid()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getPartnerid()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getPrepayid()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getTimestamp()
 com.ddyyyg.shop.model.PayReqModel: java.lang.String getPackageValue()
+com.ddyyyg.shop.model.PayReqModel: java.lang.String getNoncestr()
 com.ddyyyg.shop.model.PayReqModel: java.lang.String toString()
 com.ddyyyg.shop.model.PayReturnModel
 com.ddyyyg.shop.model.PayReturnModel: java.lang.String return_code

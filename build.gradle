@@ -45,7 +45,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             jniDebuggable false
-            proguardFile '/Users/QuestZhang/WorkSpace/AndroidStudio/Test/com.ddyyyg/proguard-rules.pro'
+            proguardFile '/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/proguard-rules.pro'
             renderscriptDebuggable false
         }
     }
