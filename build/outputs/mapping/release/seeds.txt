@@ -1,77 +1,9 @@
-com.ddyyg.shop.R$color: int black
-com.ddyyg.shop.R$color: int blue
-com.ddyyg.shop.R$color: int colorAccent
-com.ddyyg.shop.R$color: int colorPrimary
-com.ddyyg.shop.R$color: int colorPrimaryDark
-com.ddyyg.shop.R$color: int darkgrey
-com.ddyyg.shop.R$color: int grey
-com.ddyyg.shop.R$color: int lightgrey
-com.ddyyg.shop.R$color: int lightransparent
-com.ddyyg.shop.R$color: int navpage
-com.ddyyg.shop.R$color: int semitransparent
-com.ddyyg.shop.R$color: int toasterro
-com.ddyyg.shop.R$color: int transparent
-com.ddyyg.shop.R$color: int white
-com.ddyyg.shop.R$dimen: int activity_horizontal_margin
-com.ddyyg.shop.R$dimen: int activity_vertical_margin
-com.ddyyg.shop.R$drawable: int progressbar_style
-com.ddyyg.shop.R$id: int nav
-com.ddyyg.shop.R$id: int progress
-com.ddyyg.shop.R$id: int wv
-com.ddyyg.shop.R$layout: int activity_main
-com.ddyyg.shop.R$layout: int pay_result
-com.ddyyg.shop.R$mipmap: int appicon
-com.ddyyg.shop.R$mipmap: int back_arrow
-com.ddyyg.shop.R$mipmap: int ic_launcher
-com.ddyyg.shop.R$string: int API_SECRET_KEY
-com.ddyyg.shop.R$string: int APP_ID_WX
-com.ddyyg.shop.R$string: int MCH_ID_WX
-com.ddyyg.shop.R$string: int PACKAGEVALUE_WX
-com.ddyyg.shop.R$string: int TRADE_TYPE_WX
-com.ddyyg.shop.R$string: int app_back
-com.ddyyg.shop.R$string: int app_cancel
-com.ddyyg.shop.R$string: int app_continue
-com.ddyyg.shop.R$string: int app_delete
-com.ddyyg.shop.R$string: int app_edit
-com.ddyyg.shop.R$string: int app_find
-com.ddyyg.shop.R$string: int app_finish
-com.ddyyg.shop.R$string: int app_name
-com.ddyyg.shop.R$string: int app_nextstep
-com.ddyyg.shop.R$string: int app_ok
-com.ddyyg.shop.R$string: int app_prevstep
-com.ddyyg.shop.R$string: int app_save
-com.ddyyg.shop.R$string: int app_send
-com.ddyyg.shop.R$string: int app_set
-com.ddyyg.shop.R$string: int app_tip
-com.ddyyg.shop.R$string: int pay_result_callback_msg
-com.ddyyg.shop.R$string: int pay_result_tip
-com.ddyyg.shop.R$style: int AppTheme
-com.ddyyg.shop.R$style: int NavPage
-com.ddyyg.shop.model.BaseModel
-com.ddyyg.shop.model.PayModel
-com.ddyyg.shop.model.PayReqModel
-com.ddyyg.shop.model.PayReturnModel
-com.ddyyg.shop.view.NavigationBar: void setupViews(android.content.Context)
-com.ddyyg.shop.view.NavigationBar: void setTvLeft(java.lang.String)
-com.ddyyg.shop.view.NavigationBar: void setIvLeft(int)
-com.ddyyg.shop.view.NavigationBar: void setTvTitle(java.lang.String)
-com.ddyyg.shop.view.NavigationBar: void setIvTitle(int)
-com.ddyyg.shop.view.NavigationBar: void setTvRight(java.lang.String)
-com.ddyyg.shop.view.NavigationBar: void setIvRight(int)
-com.ddyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlLeft()
-com.ddyyg.shop.view.NavigationBar: android.widget.TextView getTvLeft()
-com.ddyyg.shop.view.NavigationBar: android.widget.ImageView getIvLeft()
-com.ddyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlTitle()
-com.ddyyg.shop.view.NavigationBar: android.widget.TextView getTvTitle()
-com.ddyyg.shop.view.NavigationBar: android.widget.ImageView getIvTitle()
-com.ddyyg.shop.view.NavigationBar: android.widget.FrameLayout getFlRight()
-com.ddyyg.shop.view.NavigationBar: android.widget.TextView getTvRight()
-com.ddyyg.shop.view.NavigationBar: android.widget.ImageView getIvRight()
 com.ddyyyg.app.App
 com.ddyyyg.app.App: App()
 com.ddyyyg.shop.PayJavaScript: PayJavaScript(android.content.Context,android.os.Handler)
 com.ddyyyg.shop.PayJavaScript: void payAlipay(java.lang.String)
-com.ddyyyg.shop.PayJavaScript: void payWx(java.lang.String)
+com.ddyyyg.shop.PayJavaScript: void weixinLogin()
+com.ddyyyg.shop.PayJavaScript: void payWeixin(java.lang.String)
 com.ddyyyg.shop.PayJavaScript: void testWxOrder()
 com.ddyyyg.shop.PayJavaScript: java.lang.String getErrorDes(java.lang.String)
 com.ddyyyg.shop.PayJavaScript: java.util.Map mapError()

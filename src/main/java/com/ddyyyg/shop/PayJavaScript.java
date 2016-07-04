@@ -10,11 +10,11 @@ import com.ddyyyg.shop.model.PayModel;
 import com.ddyyyg.shop.model.PayReqModel;
 import com.ddyyyg.shop.model.PayReturnModel;
 import com.ddyyyg.shop.utils.HttpUtil;
-import com.ddyyyg.shop.utils.LogUtil;
 import com.ddyyyg.shop.utils.OrderUtil;
 import com.ddyyyg.shop.utils.SPUtils;
 import com.ddyyyg.shop.utils.ToastUtil;
 import com.ddyyyg.shop.wxapi.WXPayEntryActivity;
+import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.thoughtworks.xstream.XStream;
 
@@ -42,13 +42,25 @@ public class PayJavaScript {
     }
 
     @JavascriptInterface
-    public void payAlipay(String json) {//javascript:payjavascript.payAlipay
+    public void payByAlipay(String json) {//javascript:payjavascript.payAlipay
 
 
     }
 
     @JavascriptInterface
-    public void payWx(String json) {//javascript:payjavascript.payWX
+    public void loginByWx(){
+        SendAuth.Req req = new SendAuth.Req();
+        req.openId = OrderUtil.getAppid(content);
+        req.scope = Constants.WxAuth.SCOPE_WX;
+        req.state = Constants.WxAuth.STATE_WX;
+        this.mainActivity.getWxapi().sendReq(req);
+    }
+
+    @JavascriptInterface
+    public void payWeixin(String params) {//javascript:payjavascript.payWX
+        String[] param = params.split("#");
+        Log.d("javascript", "body="+param[0]+",outTrandNo="+param[1]+",totalFee="+param[2]);
+        String json = "{\"body\":\""+param[0]+"\",out_trade_no:\""+param[1]+"\",total_fee:\""+param[2]+"\"}";
         Log.d("javascript", json);
         if (!mainActivity.isPaySupported()){
             return;
@@ -57,7 +69,7 @@ public class PayJavaScript {
         if (mainActivity.isLock()) {
             //1、生成订单，返回订单号 2、使用微信支付订单
             mainActivity.setLock(true);
-            wxPay(genStringEntity("{\"appid\"="+json+"}"));
+            wxPay(genStringEntity(json));
             //testWxOrder();
         }
 
@@ -79,13 +91,13 @@ public class PayJavaScript {
             model.setMch_id(OrderUtil.getMacid(content)/*"1356293102"*/);//**是 商户号
             //model.setDevice_info("");//否 设备号
             model.setNonce_str(OrderUtil.getNonceStr(content));//**是 随机字符串
-            model.setBody("测试商品test");//**是 商品描述***************
+            model.setBody(json.optString("body"));//**是 商品描述***************
             //model.setDetail(json.optString("detail"));//否 商品详情
             //model.setAttach(json.optString("attach"));//否 附加数据
-            model.setOut_trade_no(OrderUtil.getOutTradeNo());//**是 商户订单号
+            model.setOut_trade_no(json.optString("out_trade_no"));//**是 商户订单号//(OrderUtil.getOutTradeNo()
             //model.setFee_type(json.optString("fee_type"));//否 货币类型
-            model.setTotal_fee("1");//**是 总金额******************
-            model.setSpbill_create_ip(OrderUtil.getSpbillCreateIp());//**是 终端IP
+            model.setTotal_fee(json.optString("total_fee"));//**是 总金额******************
+            model.setSpbill_create_ip(OrderUtil.getRealIp());//**是 终端IP
             //model.setTime_start(json.optString("time_start"));//否 交易起始时间
             //model.setTime_expire(json.optString("time_expire"));//否 交易结束时间
             //model.setGoods_tag(json.optString("goods_tag"));//否 商品标记
@@ -96,7 +108,7 @@ public class PayJavaScript {
             XStream xStream = new XStream();
             xStream.autodetectAnnotations(true);
             xml = xStream.toXML(model).replace("&nbsp&","_");
-            LogUtil.d("xml",xml);
+            //LogUtil.d("xml",xml);
             return xml;
         } catch (JSONException e) {
             e.printStackTrace();

@@ -8,50 +8,6 @@ android.support.multidex.MultiDexExtractor
 android.support.multidex.MultiDexExtractor$1
 android.support.multidex.ZipUtil
 android.support.multidex.ZipUtil$CentralDirectory
-com.ddyyg.app.App
-com.ddyyg.app.AppConfig
-com.ddyyg.app.AppContext
-com.ddyyg.shop.BuildConfig
-com.ddyyg.shop.Constants
-com.ddyyg.shop.Constants$ShowMsgActivity
-com.ddyyg.shop.PayJavaScript
-com.ddyyg.shop.PayJavaScript$1
-com.ddyyg.shop.R
-com.ddyyg.shop.R$attr
-com.ddyyg.shop.R$color
-com.ddyyg.shop.R$dimen
-com.ddyyg.shop.R$drawable
-com.ddyyg.shop.R$id
-com.ddyyg.shop.R$layout
-com.ddyyg.shop.R$mipmap
-com.ddyyg.shop.R$string
-com.ddyyg.shop.R$style
-com.ddyyg.shop.model.BaseModel
-com.ddyyg.shop.model.PayModel
-com.ddyyg.shop.model.PayReqModel
-com.ddyyg.shop.model.PayReturnModel
-com.ddyyg.shop.receiver.AppRegister
-com.ddyyg.shop.utils.AppUtil
-com.ddyyg.shop.utils.DensityUtil
-com.ddyyg.shop.utils.EncryptUtils
-com.ddyyg.shop.utils.FileHelper
-com.ddyyg.shop.utils.HttpUtil
-com.ddyyg.shop.utils.HttpUtil$SSLSocketFactoryEx
-com.ddyyg.shop.utils.HttpUtil$SSLSocketFactoryEx$1
-com.ddyyg.shop.utils.LogUtil
-com.ddyyg.shop.utils.LogUtil$1
-com.ddyyg.shop.utils.MD5
-com.ddyyg.shop.utils.OrderUtil
-com.ddyyg.shop.utils.SPUtils
-com.ddyyg.shop.utils.TimeUtil
-com.ddyyg.shop.utils.ToastUtil
-com.ddyyg.shop.view.NavigationBar
-com.ddyyg.shop.wxapi.WXPayEntryActivity
-com.ddyyg.shop.wxapi.WXPayEntryActivity$1
-com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient
-com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$1
-com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$2
-com.ddyyg.shop.wxapi.WXPayEntryActivity$PayWebViewClient
 com.ddyyyg.app.App:
     private static final int REQUEST_ENABLE_BT
     35:35:public static com.ddyyyg.app.App getApplication()
@@ -73,6 +29,7 @@ com.ddyyyg.app.AppContext
 com.ddyyyg.shop.BuildConfig
 com.ddyyyg.shop.Constants
 com.ddyyyg.shop.Constants$ShowMsgActivity
+com.ddyyyg.shop.Constants$WxAuth
 com.ddyyyg.shop.R
 com.ddyyyg.shop.R$attr
 com.ddyyyg.shop.R$color
@@ -89,12 +46,13 @@ com.ddyyyg.shop.utils.AppUtil:
     49:55:public static android.content.pm.PackageInfo getPackageInfo(android.content.Context)
     60:61:public static java.lang.String getSign(android.content.Context)
     67:80:public static java.lang.String getLocalIpAddress()
-    110:110:private static java.lang.String intToIp(int)
-    117:125:public static java.lang.String getIp(android.content.Context)
-    131:139:public static java.lang.String getSingInfo(android.content.Context)
-    144:156:public static void parseSignature(byte[])
-    165:182:public static java.lang.String encryptionMD5(byte[])
-    186:190:public static java.lang.String[] getDeviceInfo()
+    85:105:public static java.lang.String getHostAddress()
+    151:151:private static java.lang.String intToIp(int)
+    158:166:public static java.lang.String getIp(android.content.Context)
+    172:180:public static java.lang.String getSingInfo(android.content.Context)
+    185:197:public static void parseSignature(byte[])
+    206:223:public static java.lang.String encryptionMD5(byte[])
+    227:231:public static java.lang.String[] getDeviceInfo()
 com.ddyyyg.shop.utils.DensityUtil:
     10:10:public DensityUtil()
     24:25:public static int px2dip(android.content.Context,float)
@@ -136,6 +94,8 @@ com.ddyyyg.shop.utils.MD5:
     14:29:public static final java.lang.String getMessageDigest(byte[])
 com.ddyyyg.shop.utils.OrderUtil:
     21:21:public OrderUtil()
+    46:46:public static final java.lang.String getOutTradeNo()
+    51:51:public static final java.lang.String getSpbillCreateIp()
 com.ddyyyg.shop.utils.TimeUtil:
     public static final java.lang.String TIME_FORMAT_ONE
     public static final java.lang.String TIME_FORMAT_TWO
@@ -158,6 +118,7 @@ com.ddyyyg.shop.utils.TimeUtil:
     private static final int SECOUND_OF_MIN
     private static final java.lang.String TIME_FORMAT_TRADE_NO
     17:17:public TimeUtil()
+    59:62:public static java.lang.String getOutTradeNo()
     77:77:public static java.lang.String formatTime(long,java.lang.String)
     82:82:public static boolean isValidDate(java.lang.String,java.lang.String)
     87:95:public static long parseTime(java.lang.String,java.lang.String)
@@ -207,7 +168,10 @@ com.tencent.mm.sdk.modelmsg.LaunchFromWX:
 com.tencent.mm.sdk.modelmsg.LaunchFromWX$Resp
 com.tencent.mm.sdk.modelmsg.SendAuth:
     private SendAuth()
-com.tencent.mm.sdk.modelmsg.SendAuth$Req
+com.tencent.mm.sdk.modelmsg.SendAuth$Req:
+    private static final java.lang.String TAG
+    private static final int LENGTH_LIMIT
+    public SendAuth$Req(android.os.Bundle)
 com.tencent.mm.sdk.modelmsg.SendAuth$Resp:
     private static final java.lang.String TAG
     private static final int LENGTH_LIMIT

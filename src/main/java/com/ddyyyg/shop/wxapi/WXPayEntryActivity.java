@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.ddyyyg.shop.Constants;
 import com.ddyyyg.shop.PayJavaScript;
 import com.ddyyyg.shop.R;
+import com.ddyyyg.shop.utils.LogUtil;
 import com.ddyyyg.shop.utils.ToastUtil;
 import com.ddyyyg.shop.view.NavigationBar;
 import com.tencent.mm.sdk.constants.Build;
@@ -67,6 +68,10 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             builder.setTitle(R.string.app_tip);
             builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
             builder.show();
+        }
+        if (resp instanceof com.tencent.mm.sdk.modelmsg.SendAuth.Resp){
+
+        LogUtil.d("login",""+resp.getType());
         }
     }
 
@@ -115,9 +120,9 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
-            getmBar().setProgress(newProgress);
+            getProgressBar().setProgress(newProgress);
             if (newProgress == 100) {
-                getmBar().setVisibility(View.GONE);
+                getProgressBar().setVisibility(View.GONE);
             }
         }
 
@@ -177,6 +182,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            LogUtil.d("webview-url",url);
             view.loadUrl(url);
             return true;
         }
@@ -185,7 +191,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);//结束
             Log.d("left", "加载完成:" + url);
-            if (getTabUrls().contains(url)) {
+            if (isIndex()) {
                 getNavigationBar().setLeftInVisible();
             } else {
                 getNavigationBar().setLeftVisible();
@@ -196,7 +202,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);//开始
-            getmBar().setVisibility(View.VISIBLE);
+            getProgressBar().setVisibility(View.VISIBLE);
             Log.d("left", "加载开始:" + url);
         }
 
@@ -240,7 +246,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         return getTabUrls().contains(getWebView().getUrl());
     }
 
-    private ProgressBar getmBar(){
+    private ProgressBar getProgressBar(){
         if(mBar == null){
             mBar = (ProgressBar) findViewById(R.id.progress);
         }

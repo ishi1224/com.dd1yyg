@@ -19,7 +19,8 @@ com.ddyyyg.shop.PayJavaScript -> com.ddyyyg.shop.a:
     com.ddyyyg.shop.wxapi.WXPayEntryActivity mainActivity -> c
     void <init>(android.content.Context,android.os.Handler) -> <init>
     void payAlipay(java.lang.String) -> payAlipay
-    void payWx(java.lang.String) -> payWx
+    void weixinLogin() -> weixinLogin
+    void payWeixin(java.lang.String) -> payWeixin
     java.lang.String genStringEntity(java.lang.String) -> a
     void wxPay(java.lang.String) -> b
     void testWxOrder() -> testWxOrder
@@ -153,7 +154,7 @@ com.ddyyyg.shop.receiver.AppRegister -> com.ddyyyg.shop.receiver.AppRegister:
     void <init>() -> <init>
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.ddyyyg.shop.utils.AppUtil -> com.ddyyyg.shop.a.a:
-    java.lang.String getHostAddress() -> a
+    java.lang.String getRealIp() -> a
 com.ddyyyg.shop.utils.DensityUtil -> com.ddyyyg.shop.a.b:
     int dip2px(android.content.Context,float) -> a
 com.ddyyyg.shop.utils.FileHelper -> com.ddyyyg.shop.a.c:
@@ -202,9 +203,8 @@ com.ddyyyg.shop.utils.OrderUtil -> com.ddyyyg.shop.a.j:
     java.lang.String getAppid(android.content.Context) -> a
     java.lang.String getMacid(android.content.Context) -> b
     java.lang.String getNonceStr(android.content.Context) -> c
-    java.lang.String getOutTradeNo() -> a
-    java.lang.String getSpbillCreateIp() -> b
-    java.lang.String getNotifyUrl() -> c
+    java.lang.String getRealIp() -> a
+    java.lang.String getNotifyUrl() -> b
     java.lang.String getTradeType(android.content.Context) -> d
     java.lang.String getPackageValue(android.content.Context) -> e
     java.lang.String getSign(android.content.Context,com.ddyyyg.shop.model.PayModel) -> a
@@ -212,16 +212,15 @@ com.ddyyyg.shop.utils.OrderUtil -> com.ddyyyg.shop.a.j:
     java.util.Map M(com.ddyyyg.shop.model.PayModel) -> a
     java.util.Map M(com.ddyyyg.shop.model.PayReqModel) -> a
     java.lang.String Splice(android.content.Context,java.util.List,java.util.Map) -> a
-    java.lang.String getTimeStamp() -> d
+    java.lang.String getTimeStamp() -> c
 com.ddyyyg.shop.utils.SPUtils -> com.ddyyyg.shop.a.k:
     void <init>() -> <init>
     void putString(android.content.Context,java.lang.String,java.lang.String) -> putString
     java.lang.String getString(android.content.Context,java.lang.String,java.lang.String) -> getString
 com.ddyyyg.shop.utils.TimeUtil -> com.ddyyyg.shop.a.l:
-    java.lang.String getOutTradeNo() -> a
     java.lang.String getCurrentTime(java.lang.String) -> a
-    java.lang.String Date2TimeStamp() -> b
-    java.lang.String getBeijingTime() -> c
+    java.lang.String Date2TimeStamp() -> a
+    java.lang.String getBeijingTime() -> b
     java.lang.String getFormatedDateString(float) -> a
 com.ddyyyg.shop.utils.ToastUtil -> com.ddyyyg.shop.a.m:
     void makeText(android.content.Context,java.lang.String) -> a
@@ -273,7 +272,7 @@ com.ddyyyg.shop.wxapi.WXPayEntryActivity -> com.ddyyyg.shop.wxapi.WXPayEntryActi
     boolean isPaySupported() -> a
     boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
     boolean isIndex() -> g
-    android.widget.ProgressBar getmBar() -> h
+    android.widget.ProgressBar getProgressBar() -> h
     android.webkit.WebView getWebView() -> i
     android.os.Handler getmHandler() -> b
     com.ddyyyg.shop.view.NavigationBar getNavigationBar() -> c
@@ -284,6 +283,7 @@ com.ddyyyg.shop.wxapi.WXPayEntryActivity -> com.ddyyyg.shop.wxapi.WXPayEntryActi
     java.util.List getTabUrls() -> f
     android.webkit.WebView access$000(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> a
     android.widget.ProgressBar access$100(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> b
+    boolean access$200(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> c
 com.ddyyyg.shop.wxapi.WXPayEntryActivity$1 -> com.ddyyyg.shop.wxapi.a:
     com.ddyyyg.shop.wxapi.WXPayEntryActivity this$0 -> a
     void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> <init>
@@ -437,7 +437,15 @@ com.tencent.mm.sdk.modelmsg.LaunchFromWX$Req -> com.a.a.b.e.d:
     int getType() -> a
     boolean checkArgs() -> b
 com.tencent.mm.sdk.modelmsg.SendAuth -> com.a.a.b.e.e:
-com.tencent.mm.sdk.modelmsg.SendAuth$Resp -> com.a.a.b.e.f:
+com.tencent.mm.sdk.modelmsg.SendAuth$Req -> com.a.a.b.e.f:
+    java.lang.String scope -> c
+    java.lang.String state -> d
+    void <init>() -> <init>
+    int getType() -> a
+    void fromBundle(android.os.Bundle) -> b
+    void toBundle(android.os.Bundle) -> a
+    boolean checkArgs() -> b
+com.tencent.mm.sdk.modelmsg.SendAuth$Resp -> com.a.a.b.e.g:
     java.lang.String code -> e
     java.lang.String state -> f
     java.lang.String url -> g
@@ -445,14 +453,14 @@ com.tencent.mm.sdk.modelmsg.SendAuth$Resp -> com.a.a.b.e.f:
     void <init>(android.os.Bundle) -> <init>
     int getType() -> a
     void fromBundle(android.os.Bundle) -> a
-com.tencent.mm.sdk.modelmsg.SendMessageToWX -> com.a.a.b.e.g:
-com.tencent.mm.sdk.modelmsg.SendMessageToWX$Resp -> com.a.a.b.e.h:
+com.tencent.mm.sdk.modelmsg.SendMessageToWX -> com.a.a.b.e.h:
+com.tencent.mm.sdk.modelmsg.SendMessageToWX$Resp -> com.a.a.b.e.i:
     void <init>() -> <init>
     void <init>(android.os.Bundle) -> <init>
     int getType() -> a
     void fromBundle(android.os.Bundle) -> a
-com.tencent.mm.sdk.modelmsg.ShowMessageFromWX -> com.a.a.b.e.i:
-com.tencent.mm.sdk.modelmsg.ShowMessageFromWX$Req -> com.a.a.b.e.j:
+com.tencent.mm.sdk.modelmsg.ShowMessageFromWX -> com.a.a.b.e.j:
+com.tencent.mm.sdk.modelmsg.ShowMessageFromWX$Req -> com.a.a.b.e.k:
     com.tencent.mm.sdk.modelmsg.WXMediaMessage message -> c
     void <init>() -> <init>
     void <init>(android.os.Bundle) -> <init>
@@ -460,7 +468,7 @@ com.tencent.mm.sdk.modelmsg.ShowMessageFromWX$Req -> com.a.a.b.e.j:
     void toBundle(android.os.Bundle) -> a
     void fromBundle(android.os.Bundle) -> b
     boolean checkArgs() -> b
-com.tencent.mm.sdk.modelmsg.WXMediaMessage -> com.a.a.b.e.k:
+com.tencent.mm.sdk.modelmsg.WXMediaMessage -> com.a.a.b.e.l:
     int sdkVer -> a
     java.lang.String title -> b
     java.lang.String description -> c
@@ -471,12 +479,12 @@ com.tencent.mm.sdk.modelmsg.WXMediaMessage -> com.a.a.b.e.k:
     void <init>(com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject) -> <init>
     int getType() -> a
     boolean checkArgs() -> b
-com.tencent.mm.sdk.modelmsg.WXMediaMessage$Builder -> com.a.a.b.e.l:
+com.tencent.mm.sdk.modelmsg.WXMediaMessage$Builder -> com.a.a.b.e.m:
     android.os.Bundle toBundle(com.tencent.mm.sdk.modelmsg.WXMediaMessage) -> a
     com.tencent.mm.sdk.modelmsg.WXMediaMessage fromBundle(android.os.Bundle) -> a
     java.lang.String pathNewToOld(java.lang.String) -> a
     java.lang.String pathOldToNew(java.lang.String) -> b
-com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject -> com.a.a.b.e.m:
+com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject -> com.a.a.b.e.n:
     void serialize(android.os.Bundle) -> a
     void unserialize(android.os.Bundle) -> b
     int type() -> a

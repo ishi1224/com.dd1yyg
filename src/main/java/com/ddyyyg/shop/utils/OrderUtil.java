@@ -51,9 +51,13 @@ public final class OrderUtil {
         return AppUtil.getHostAddress();
     }
 
+    public static final String getRealIp(){
+        return AppUtil.getRealIp();
+    }
+
     //**是 通知地址
     public static final String getNotifyUrl(){
-        return Constants.HOST;
+        return Constants.NOTIFY_URL;
     }
 
     //**是 交易类型
