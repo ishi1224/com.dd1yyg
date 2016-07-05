@@ -59,9 +59,9 @@ public class PayJavaScript {
     @JavascriptInterface
     public void payWeixin(String params) {//javascript:payjavascript.payWX
         String[] param = params.split("#");
-        Log.d("javascript", "body="+param[0]+",outTrandNo="+param[1]+",totalFee="+param[2]);
-        String json = "{\"body\":\""+param[0]+"\",out_trade_no:\""+param[1]+"\",total_fee:\""+param[2]+"\"}";
-        Log.d("javascript", json);
+        //Log.d("javascript", "body="+param[0]+",outTradeNo="+param[1]+",totalFee="+param[2]);
+        String json = "{\"body\":\""+param[0]+"\",\"out_trade_no\":\""+param[1]+"\",\"total_fee:\""+param[2]+"\"}";
+        //Log.d("javascript", json);
         if (!mainActivity.isPaySupported()){
             return;
         }
