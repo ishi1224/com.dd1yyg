@@ -18,11 +18,11 @@ com.ddyyyg.shop.PayJavaScript -> com.ddyyyg.shop.a:
     android.os.Handler handler -> b
     com.ddyyyg.shop.wxapi.WXPayEntryActivity mainActivity -> c
     void <init>(android.content.Context,android.os.Handler) -> <init>
-    void payAlipay(java.lang.String) -> payAlipay
-    void weixinLogin() -> weixinLogin
+    void payByAlipay(java.lang.String) -> payByAlipay
+    void loginByWx() -> loginByWx
     void payWeixin(java.lang.String) -> payWeixin
-    java.lang.String genStringEntity(java.lang.String) -> a
-    void wxPay(java.lang.String) -> b
+    java.lang.String genStringEntity(java.util.Map) -> a
+    void wxPay(java.lang.String) -> a
     void testWxOrder() -> testWxOrder
     java.lang.String getErrorDes(java.lang.String) -> getErrorDes
     java.util.Map mapError() -> mapError

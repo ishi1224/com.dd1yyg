@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ddyyyg.shop.Constants;
+import com.ddyyyg.shop.Constants.MobileUrl;
 import com.ddyyyg.shop.PayJavaScript;
 import com.ddyyyg.shop.R;
 import com.ddyyyg.shop.utils.LogUtil;
@@ -64,10 +65,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onResp(BaseResp resp) {
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.app_tip);
-            builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
-            builder.show();
+           getWebView().loadUrl(Constants.HOST+"/?/mobile/home");
         }
         if (resp instanceof com.tencent.mm.sdk.modelmsg.SendAuth.Resp){
 
@@ -319,18 +317,18 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             tabUrls.add("file:///android_asset/html/error.html");
             tabUrls.add(Constants.HOST+"/");
             tabUrls.add(Constants.HOST);
-            tabUrls.add(Constants.HOST+"/?/mobile/mobile/");
-            tabUrls.add(Constants.HOST+"/?/mobile/mobile");
-            tabUrls.add(Constants.HOST+"/?/mobile/mobile/glist/");
-            tabUrls.add(Constants.HOST+"/?/mobile/mobile/glist");
-            tabUrls.add(Constants.HOST+"/?/mobile/mobile/lottery/");
-            tabUrls.add(Constants.HOST+"/?/mobile/mobile/lottery");
-            tabUrls.add(Constants.HOST+"/?/mobile/cart/cartlist/");
-            tabUrls.add(Constants.HOST+"/?/mobile/cart/cartlist");
-            tabUrls.add(Constants.HOST+"/?/mobile/user/login/");
-            tabUrls.add(Constants.HOST+"/?/mobile/user/login");
-            tabUrls.add(Constants.HOST+"/?/mobile/home/");
-            tabUrls.add(Constants.HOST+"/?/mobile/home");
+            tabUrls.add(Constants.HOST+MobileUrl.MOBILE+"/");
+            tabUrls.add(Constants.HOST+MobileUrl.MOBILE);
+            tabUrls.add(Constants.HOST+MobileUrl.GOODSLIST+"/");
+            tabUrls.add(Constants.HOST+MobileUrl.GOODSLIST);
+            tabUrls.add(Constants.HOST+MobileUrl.LOTTERY+"/");
+            tabUrls.add(Constants.HOST+MobileUrl.LOTTERY);
+            tabUrls.add(Constants.HOST+MobileUrl.CARTLIST+"/");
+            tabUrls.add(Constants.HOST+MobileUrl.CARTLIST);
+            tabUrls.add(Constants.HOST+MobileUrl.LOGINURL+"/");
+            tabUrls.add(Constants.HOST+MobileUrl.LOGINURL);
+            tabUrls.add(Constants.HOST+MobileUrl.HOME+"/");
+            tabUrls.add(Constants.HOST+MobileUrl.HOME);
         }
         return tabUrls;
     }

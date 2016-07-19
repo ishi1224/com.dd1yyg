@@ -72,7 +72,29 @@ android {
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
+
     productFlavors {
+
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+        }
+
+        c360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "c360"]
+        }
+
+        uc {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "uc"]
+        }
+
+        yingyongbao {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+        }
+
     }
 }
 

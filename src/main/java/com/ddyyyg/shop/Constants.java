@@ -3,6 +3,22 @@ package com.ddyyyg.shop;
 public class Constants {
 
 	public static final String HOST = "http://app.dd1yyg.com";
+
+	public static class MobileUrl{
+
+		public static final String MOBILE = "/?/mobile/mobile";//主页
+
+		public static final String GOODSLIST = "/?/mobile/mobile/glist"; //商品列表（全部商品）
+
+		public static final String LOTTERY = "/?/mobile/mobile/lottery";//最新揭晓
+
+		public static final String CARTLIST = "/?/mobile/cart/cartlist";//购物车
+
+		public static final String LOGINURL = "/?/mobile/user/login";//登录
+
+		public static final String HOME = "/?/mobile/home";//主页
+
+	}
 	//统一下单
 	//public static final String GEN_URL = "http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php?plat=android";
 	public static final String GEN_URL = "https://api.mch.weixin.qq.com/pay/unifiedorder";

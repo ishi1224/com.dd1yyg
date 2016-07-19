@@ -16,7 +16,7 @@ import java.io.File;
  */
 public class LogUtil {
 
-	private static boolean mOpen = true; // 日志开关
+	private static boolean mOpen = false; // 日志开关
 	private static final String LEVEL_D = "D";
 	private static final String LEVEL_E = "E";
 	private static final String LEVEL_I = "I";

@@ -1,8 +1,8 @@
 com.ddyyyg.app.App
 com.ddyyyg.app.App: App()
 com.ddyyyg.shop.PayJavaScript: PayJavaScript(android.content.Context,android.os.Handler)
-com.ddyyyg.shop.PayJavaScript: void payAlipay(java.lang.String)
-com.ddyyyg.shop.PayJavaScript: void weixinLogin()
+com.ddyyyg.shop.PayJavaScript: void payByAlipay(java.lang.String)
+com.ddyyyg.shop.PayJavaScript: void loginByWx()
 com.ddyyyg.shop.PayJavaScript: void payWeixin(java.lang.String)
 com.ddyyyg.shop.PayJavaScript: void testWxOrder()
 com.ddyyyg.shop.PayJavaScript: java.lang.String getErrorDes(java.lang.String)

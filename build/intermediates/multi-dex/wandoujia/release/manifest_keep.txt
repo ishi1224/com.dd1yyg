@@ -1,0 +1,12 @@
+-keep class com.ddyyyg.app.App {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+-keep class com.ddyyyg.shop.wxapi.WXPayEntryActivity { <init>(); }
+-keep class com.ddyyyg.shop.receiver.AppRegister { <init>(); }
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+-keep public class * extends java.lang.annotation.Annotation {
+    *;
+}
