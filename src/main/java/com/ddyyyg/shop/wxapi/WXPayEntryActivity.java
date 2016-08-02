@@ -1,32 +1,25 @@
 package com.ddyyyg.shop.wxapi;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.ConsoleMessage;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.ddyyyg.shop.Constants;
-import com.ddyyyg.shop.Constants.MobileUrl;
-import com.ddyyyg.shop.PayJavaScript;
+import com.ddyyyg.app.Constants;
 import com.ddyyyg.shop.R;
+import com.ddyyyg.shop.ui.adapter.ViewPagerAdapter;
 import com.ddyyyg.shop.utils.LogUtil;
+import com.ddyyyg.shop.utils.SPUtils;
 import com.ddyyyg.shop.utils.ToastUtil;
-import com.ddyyyg.shop.view.NavigationBar;
+import com.ddyyyg.shop.utils.URLSetUtil;
+import com.ddyyyg.shop.view.CustomViewPager;
+import com.ddyyyg.shop.view.MainView;
 import com.tencent.mm.sdk.constants.Build;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
@@ -36,40 +29,30 @@ import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.ArrayList;
-import java.util.List;
 
-//http://weixin.dd1yyg.com/?/mobile/mobile/(1)
-//http://weixin.dd1yyg.com/?/mobile/mobile/glist(2)
-//http://weixin.dd1yyg.com/?/mobile/mobile/lottery(3)
-//http://weixin.dd1yyg.com/?/mobile/cart/cartlist(4)
-//http://weixin.dd1yyg.com/?/mobile/user/login(5)|http://weixin.dd1yyg.com/?/mobile/home/(5)
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
-
     private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
     private static final String ERROR_PAGE = "data:text/html,chromewebdata";
     private static final String APP_CACAHE_DIRNAME = "/webcache";
-    private ProgressBar mBar;/* 进度条控件 */
-    private WebView mWv;
-    private Handler mHandler;
-    private List<String> tabUrls;
-    private NavigationBar mNavBar;
+    private CustomViewPager pager;
+    private ArrayList<View> viewContainter;
+    private View guideView0;
+    private View guideView1;
+    private MainView mainView;
     private IWXAPI iwxapi;
     private boolean lock;
 
     @Override
-    public void onReq(BaseReq req) {
-
-    }
+    public void onReq(BaseReq req) {}
 
     @Override
     public void onResp(BaseResp resp) {
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-           getWebView().loadUrl(Constants.HOST+"/?/mobile/home");
+           mainView.getWebView().loadUrl(Constants.HOST+"/?/mobile/home");
         }
         if (resp instanceof com.tencent.mm.sdk.modelmsg.SendAuth.Resp){
-
-        LogUtil.d("login",""+resp.getType());
+             LogUtil.d("login",""+resp.getType());
         }
     }
 
@@ -77,18 +60,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupViews();
         regToWx();
-        getWebView().loadUrl(Constants.HOST);
-        getNavigationBar().setIvLeft(R.mipmap.back_arrow);
-        getNavigationBar().getFlLeft().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getWebView().canGoBack()) {
-                    getWebView().goBack();
-                }
-            }
-        });
-        getNavigationBar().setLeftInVisible();
         getWxapi().handleIntent(getIntent(), this);
     }
 
@@ -107,112 +80,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         return  isPaySupported;
     }
 
-    private class PayWebChromeClient extends WebChromeClient {
-
-        @Override
-        public void onReceivedTitle(WebView view, String title) {
-            super.onReceivedTitle(view, title);
-            getNavigationBar().setTvTitle(title);
-        }
-
-        @Override
-        public void onProgressChanged(WebView view, int newProgress) {
-            super.onProgressChanged(view, newProgress);
-            getProgressBar().setProgress(newProgress);
-            if (newProgress == 100) {
-                getProgressBar().setVisibility(View.GONE);
-            }
-        }
-
-        @Override
-        public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
-            new AlertDialog.Builder(WXPayEntryActivity.this)
-                    .setTitle("提示" )
-                    .setMessage(message)
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .show();
-            return true;
-        }
-
-        @Override
-        public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-            super.onJsAlert(view,url,message,result);
-            new AlertDialog.Builder(WXPayEntryActivity.this)
-                    .setTitle("提示" )
-                    .setMessage(message)
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            result.cancel();
-                        }
-                    })
-                    .show();
-            return true;
-        }
-
-        @Override
-        public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
-            return super.onJsPrompt(view, url, message, defaultValue, result);
-        }
-
-        @Override
-        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-            super.onConsoleMessage(consoleMessage);
-            if (consoleMessage.messageLevel() == ConsoleMessage.MessageLevel.ERROR) {
-                Log.d("Level-Url", getWebView().getUrl());
-            }
-            return true;
-        }
-    }
-
-    private class PayWebViewClient extends WebViewClient {
-
-        @Override
-        public void onLoadResource(WebView view, String url) {
-            super.onLoadResource(view, url);
-        }
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            LogUtil.d("webview-url",url);
-            view.loadUrl(url);
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);//结束
-            Log.d("left", "加载完成:" + url);
-            if (isIndex()) {
-                getNavigationBar().setLeftInVisible();
-            } else {
-                getNavigationBar().setLeftVisible();
-            }
-            getNavigationBar().setTvTitle(getWebView().getTitle());
-        }
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            super.onPageStarted(view, url, favicon);//开始
-            getProgressBar().setVisibility(View.VISIBLE);
-            Log.d("left", "加载开始:" + url);
-        }
-
-        @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            super.onReceivedError(view, errorCode, description, failingUrl);
-            view.loadUrl("file:///android_asset/html/error.html");
-            Log.d("加载失败",failingUrl);
-        }
-    }
-
-
     /**
      * 点击两次返回键退出应用程序
      */
@@ -221,7 +88,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (isIndex() || !getWebView().canGoBack()) {
+            if (URLSetUtil.getInstance().tabUrls.contains(mainView.getWebView().getUrl()) ||
+                    !mainView.getWebView().canGoBack()) {
                 if ((System.currentTimeMillis() - mExitTime) > 2000) {
                     Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                     mExitTime = System.currentTimeMillis();
@@ -230,7 +98,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                     System.exit(0);
                 }
             } else {
-                getWebView().goBack();
+                mainView.getWebView().goBack();
             }
             return true;
         }
@@ -240,53 +108,12 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         return super.onKeyDown(keyCode, event);
     }
 
-    private boolean isIndex() {
-        return getTabUrls().contains(getWebView().getUrl());
+    public boolean isLock() {
+        return !lock;
     }
 
-    private ProgressBar getProgressBar(){
-        if(mBar == null){
-            mBar = (ProgressBar) findViewById(R.id.progress);
-        }
-        return mBar;
-    }
-
-    private WebView getWebView() {
-        if (mWv == null) {
-            this.mWv = (WebView) findViewById(R.id.wv);
-            this.mWv.getSettings().setJavaScriptEnabled(true);
-            this.mWv.addJavascriptInterface(new PayJavaScript(this, getmHandler()),
-                    "payjavascript");
-            this.mWv.setWebChromeClient(new PayWebChromeClient());
-            this.mWv.setWebViewClient(new PayWebViewClient());
-
-            this.mWv.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);  //设置 缓存模式
-            // 开启 DOM storage API 功能
-            this.mWv.getSettings().setDomStorageEnabled(true);
-            //开启 database storage API 功能
-            this.mWv.getSettings().setDatabaseEnabled(true);
-            String cacheDirPath = getFilesDir().getAbsolutePath() + APP_CACAHE_DIRNAME;
-            //设置  Application Caches 缓存目录
-            this.mWv.getSettings().setAppCachePath(cacheDirPath);
-            //开启 Application Caches 功能
-            this.mWv.getSettings().setAppCacheEnabled(true);
-            //this.mWv.loadUrl("file:///android_asset/index.html");
-        }
-        return mWv;
-    }
-
-    public Handler getmHandler(){
-        if (mHandler == null){
-            mHandler = new Handler();
-        }
-        return mHandler;
-    }
-
-    public NavigationBar getNavigationBar() {
-        if (mNavBar == null) {
-            mNavBar = (NavigationBar) findViewById(R.id.nav);
-        }
-        return mNavBar;
+    public void setLock(boolean lock) {
+        this.lock = lock;
     }
 
     public IWXAPI getWxapi() {
@@ -302,34 +129,71 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         iwxapi.registerApp(getResources().getString(R.string.APP_ID_WX));
     }
 
-    public boolean isLock() {
-        return !lock;
+    private void setupViews(){
+        this.pager = (CustomViewPager) this.findViewById(R.id.viewpager);
+
+        //this.pager.setPageTransformer();
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        this.guideView0 = inflater.inflate(R.layout.current_image_view, null);
+
+        ((ImageView)guideView0).setImageResource(R.mipmap.launchs);
+
+        this.guideView1 = inflater.inflate(R.layout.view_main, null);
+
+        this.mainView = (MainView)guideView1;
+
+        this.viewContainter = new ArrayList<View>();
+
+        if (!SPUtils.getBoolean(this,"isFirst",false)){/*地址启动引导图*/}
+
+        viewContainter.add(guideView0);
+
+        viewContainter.add(guideView1);
+
+        pager.setAdapter(new ViewPagerAdapter(this, viewContainter));
+
+        pager.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                return false;//返回true拦截手动滑动
+            }
+        });
     }
 
-    public void setLock(boolean lock) {
-        this.lock = lock;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pager.setCurrentItem(1);
+            }
+        }, 3*1000);
     }
 
-    public List<String> getTabUrls() {
-        if (tabUrls == null) {
-            tabUrls = new ArrayList<String>();
-            tabUrls.add("data:text/html,chromewebdata");
-            tabUrls.add("file:///android_asset/html/error.html");
-            tabUrls.add(Constants.HOST+"/");
-            tabUrls.add(Constants.HOST);
-            tabUrls.add(Constants.HOST+MobileUrl.MOBILE+"/");
-            tabUrls.add(Constants.HOST+MobileUrl.MOBILE);
-            tabUrls.add(Constants.HOST+MobileUrl.GOODSLIST+"/");
-            tabUrls.add(Constants.HOST+MobileUrl.GOODSLIST);
-            tabUrls.add(Constants.HOST+MobileUrl.LOTTERY+"/");
-            tabUrls.add(Constants.HOST+MobileUrl.LOTTERY);
-            tabUrls.add(Constants.HOST+MobileUrl.CARTLIST+"/");
-            tabUrls.add(Constants.HOST+MobileUrl.CARTLIST);
-            tabUrls.add(Constants.HOST+MobileUrl.LOGINURL+"/");
-            tabUrls.add(Constants.HOST+MobileUrl.LOGINURL);
-            tabUrls.add(Constants.HOST+MobileUrl.HOME+"/");
-            tabUrls.add(Constants.HOST+MobileUrl.HOME);
-        }
-        return tabUrls;
+    @Override
+    protected void onResume() {//在Activity显示后执行
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {//在activity将要消失后执行
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {//在Activity消失后执行
+        super.onStop();
+        pager.setScanScroll(true);
+        pager.setCurrentItem(0);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

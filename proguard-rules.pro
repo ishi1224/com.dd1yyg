@@ -16,7 +16,7 @@
    public *;
 }
 
--keepclassmembers class com.ddyyyg.shop.PayJavaScript{
+-keepclassmembers class com.ddyyyg.shop.utils.PayJavaScript{
     public *;
 }
 
@@ -24,9 +24,9 @@
     public *;
 }
 
--keep class com.ddyyyg.shop.PayJavaScript.** { *; }
+-keep class com.ddyyyg.shop.utils.PayJavaScript.** { *; }
 -keep class com.ddyyyg.shop.utils.SPUtils.** { *; }
--keep class com.ddyyyg.shop.model.** { *; }
+-keep class com.ddyyyg.shop.ui.model.** { *; }
 -keep class java.lang.reflect.** { *; }
 
 -keep class com.thoughtworks.xstream.**{*;}#使用xstream重点

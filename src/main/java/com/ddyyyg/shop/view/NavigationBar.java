@@ -47,7 +47,7 @@ public class NavigationBar extends LinearLayout {
     private void setupViews(Context context) {
         this.context = context;
         setOrientation(LinearLayout.HORIZONTAL);
-        setBackgroundColor(Color.parseColor("#1b1a1f"));
+        setBackgroundColor(Color.parseColor("#e54048"));
         setGravity(Gravity.CENTER_VERTICAL);
         addView(getFlLeft());
         addView(getFlTitle());

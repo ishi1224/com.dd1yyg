@@ -3,7 +3,7 @@ com.ddyyyg.app.App: App()
 com.ddyyyg.shop.PayJavaScript: PayJavaScript(android.content.Context,android.os.Handler)
 com.ddyyyg.shop.PayJavaScript: void payByAlipay(java.lang.String)
 com.ddyyyg.shop.PayJavaScript: void loginByWx()
-com.ddyyyg.shop.PayJavaScript: void payWeixin(java.lang.String)
+com.ddyyyg.shop.PayJavaScript: void payWeixin(java.lang.Object)
 com.ddyyyg.shop.PayJavaScript: void testWxOrder()
 com.ddyyyg.shop.PayJavaScript: java.lang.String getErrorDes(java.lang.String)
 com.ddyyyg.shop.PayJavaScript: java.util.Map mapError()
@@ -24,14 +24,18 @@ com.ddyyyg.shop.R$color: int white
 com.ddyyyg.shop.R$dimen: int activity_horizontal_margin
 com.ddyyyg.shop.R$dimen: int activity_vertical_margin
 com.ddyyyg.shop.R$drawable: int progressbar_style
+com.ddyyyg.shop.R$id: int main
 com.ddyyyg.shop.R$id: int nav
 com.ddyyyg.shop.R$id: int progress
 com.ddyyyg.shop.R$id: int wv
 com.ddyyyg.shop.R$layout: int activity_main
+com.ddyyyg.shop.R$layout: int current_image_view
 com.ddyyyg.shop.R$layout: int pay_result
+com.ddyyyg.shop.R$layout: int view_main
 com.ddyyyg.shop.R$mipmap: int appicon
 com.ddyyyg.shop.R$mipmap: int back_arrow
 com.ddyyyg.shop.R$mipmap: int ic_launcher
+com.ddyyyg.shop.R$mipmap: int search
 com.ddyyyg.shop.R$string: int API_SECRET_KEY
 com.ddyyyg.shop.R$string: int APP_ID_WX
 com.ddyyyg.shop.R$string: int MCH_ID_WX
@@ -180,6 +184,15 @@ com.ddyyyg.shop.receiver.AppRegister: AppRegister()
 com.ddyyyg.shop.utils.SPUtils: SPUtils()
 com.ddyyyg.shop.utils.SPUtils: void putString(android.content.Context,java.lang.String,java.lang.String)
 com.ddyyyg.shop.utils.SPUtils: java.lang.String getString(android.content.Context,java.lang.String,java.lang.String)
+com.ddyyyg.shop.view.MainView
+com.ddyyyg.shop.view.MainView: MainView(android.content.Context)
+com.ddyyyg.shop.view.MainView: MainView(android.content.Context,android.util.AttributeSet)
+com.ddyyyg.shop.view.MainView: MainView(android.content.Context,android.util.AttributeSet,int)
+com.ddyyyg.shop.view.MainView: void setupViews(android.content.Context)
+com.ddyyyg.shop.view.MainView: android.webkit.WebView getWebView()
+com.ddyyyg.shop.view.MainView: android.os.Handler getHandler()
+com.ddyyyg.shop.view.MainView: com.ddyyyg.shop.view.NavigationBar getNavigationBar()
+com.ddyyyg.shop.view.MainView: android.widget.ProgressBar getProgressBar()
 com.ddyyyg.shop.view.NavigationBar
 com.ddyyyg.shop.view.NavigationBar: NavigationBar(android.content.Context)
 com.ddyyyg.shop.view.NavigationBar: NavigationBar(android.content.Context,android.util.AttributeSet)

@@ -13,6 +13,8 @@ com.ddyyyg.app.AppConfig -> com.ddyyyg.app.a:
     int uiWidth -> c
     int uiHeight -> d
     void <clinit>() -> <clinit>
+com.ddyyyg.app.AppContext -> com.ddyyyg.app.b:
+    void <init>() -> <init>
 com.ddyyyg.shop.PayJavaScript -> com.ddyyyg.shop.a:
     android.content.Context content -> a
     android.os.Handler handler -> b
@@ -20,7 +22,7 @@ com.ddyyyg.shop.PayJavaScript -> com.ddyyyg.shop.a:
     void <init>(android.content.Context,android.os.Handler) -> <init>
     void payByAlipay(java.lang.String) -> payByAlipay
     void loginByWx() -> loginByWx
-    void payWeixin(java.lang.String) -> payWeixin
+    void payWeixin(java.lang.Object) -> payWeixin
     java.lang.String genStringEntity(java.util.Map) -> a
     void wxPay(java.lang.String) -> a
     void testWxOrder() -> testWxOrder
@@ -153,36 +155,34 @@ com.ddyyyg.shop.model.PayReturnModel -> com.ddyyyg.shop.model.PayReturnModel:
 com.ddyyyg.shop.receiver.AppRegister -> com.ddyyyg.shop.receiver.AppRegister:
     void <init>() -> <init>
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.ddyyyg.shop.utils.AppUtil -> com.ddyyyg.shop.a.a:
-    java.lang.String getRealIp() -> a
-com.ddyyyg.shop.utils.DensityUtil -> com.ddyyyg.shop.a.b:
+com.ddyyyg.shop.utils.DensityUtil -> com.ddyyyg.shop.a.a:
     int dip2px(android.content.Context,float) -> a
-com.ddyyyg.shop.utils.FileHelper -> com.ddyyyg.shop.a.c:
+com.ddyyyg.shop.utils.FileHelper -> com.ddyyyg.shop.a.b:
     java.lang.String mEncode -> a
     boolean writeStringToFile(java.io.File,java.lang.String) -> a
     boolean writeStringToFile(java.io.File,java.lang.String,boolean) -> a
     boolean createNewFileAndParentDir(java.io.File) -> a
     boolean createParentDir(java.io.File) -> b
     void <clinit>() -> <clinit>
-com.ddyyyg.shop.utils.HttpUtil -> com.ddyyyg.shop.a.d:
+com.ddyyyg.shop.utils.HttpUtil -> com.ddyyyg.shop.a.c:
     java.lang.String TAG -> a
     void <init>() -> <init>
     byte[] httpGet(java.lang.String) -> a
     byte[] httpPost(java.lang.String,java.lang.String) -> a
     org.apache.http.client.HttpClient getNewHttpClient() -> a
     void <clinit>() -> <clinit>
-com.ddyyyg.shop.utils.HttpUtil$SSLSocketFactoryEx -> com.ddyyyg.shop.a.e:
+com.ddyyyg.shop.utils.HttpUtil$SSLSocketFactoryEx -> com.ddyyyg.shop.a.d:
     javax.net.ssl.SSLContext sslContext -> a
     void <init>(java.security.KeyStore) -> <init>
     java.net.Socket createSocket(java.net.Socket,java.lang.String,int,boolean) -> createSocket
     java.net.Socket createSocket() -> createSocket
-com.ddyyyg.shop.utils.HttpUtil$SSLSocketFactoryEx$1 -> com.ddyyyg.shop.a.f:
+com.ddyyyg.shop.utils.HttpUtil$SSLSocketFactoryEx$1 -> com.ddyyyg.shop.a.e:
     com.ddyyyg.shop.utils.HttpUtil$SSLSocketFactoryEx this$0 -> a
     void <init>(com.ddyyyg.shop.utils.HttpUtil$SSLSocketFactoryEx) -> <init>
     java.security.cert.X509Certificate[] getAcceptedIssuers() -> getAcceptedIssuers
     void checkClientTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkClientTrusted
     void checkServerTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkServerTrusted
-com.ddyyyg.shop.utils.LogUtil -> com.ddyyyg.shop.a.g:
+com.ddyyyg.shop.utils.LogUtil -> com.ddyyyg.shop.a.f:
     boolean mOpen -> b
     java.lang.String TAG -> a
     void <init>() -> <init>
@@ -191,20 +191,19 @@ com.ddyyyg.shop.utils.LogUtil -> com.ddyyyg.shop.a.g:
     void i(java.lang.String,java.lang.String) -> c
     void writeToFile(java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
     void <clinit>() -> <clinit>
-com.ddyyyg.shop.utils.LogUtil$1 -> com.ddyyyg.shop.a.h:
+com.ddyyyg.shop.utils.LogUtil$1 -> com.ddyyyg.shop.a.g:
     java.lang.String val$levelD -> a
     java.lang.String val$tag -> b
     java.lang.String val$msg -> c
     void <init>(java.lang.String,java.lang.String,java.lang.String) -> <init>
     void run() -> run
-com.ddyyyg.shop.utils.MD5 -> com.ddyyyg.shop.a.i:
+com.ddyyyg.shop.utils.MD5 -> com.ddyyyg.shop.a.h:
     java.lang.String d(java.lang.Object) -> a
-com.ddyyyg.shop.utils.OrderUtil -> com.ddyyyg.shop.a.j:
+com.ddyyyg.shop.utils.OrderUtil -> com.ddyyyg.shop.a.i:
     java.lang.String getAppid(android.content.Context) -> a
     java.lang.String getMacid(android.content.Context) -> b
     java.lang.String getNonceStr(android.content.Context) -> c
-    java.lang.String getRealIp() -> a
-    java.lang.String getNotifyUrl() -> b
+    java.lang.String getNotifyUrl() -> a
     java.lang.String getTradeType(android.content.Context) -> d
     java.lang.String getPackageValue(android.content.Context) -> e
     java.lang.String getSign(android.content.Context,com.ddyyyg.shop.model.PayModel) -> a
@@ -212,18 +211,77 @@ com.ddyyyg.shop.utils.OrderUtil -> com.ddyyyg.shop.a.j:
     java.util.Map M(com.ddyyyg.shop.model.PayModel) -> a
     java.util.Map M(com.ddyyyg.shop.model.PayReqModel) -> a
     java.lang.String Splice(android.content.Context,java.util.List,java.util.Map) -> a
-    java.lang.String getTimeStamp() -> c
-com.ddyyyg.shop.utils.SPUtils -> com.ddyyyg.shop.a.k:
+    java.lang.String getTimeStamp() -> b
+com.ddyyyg.shop.utils.PayWebChromeClient -> com.ddyyyg.shop.a.j:
+    android.webkit.WebView webView -> a
+    android.widget.ProgressBar progressBar -> b
+    com.ddyyyg.shop.view.NavigationBar navigationBar -> c
+    void <init>(android.webkit.WebView,android.widget.ProgressBar,com.ddyyyg.shop.view.NavigationBar) -> <init>
+    void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
+    void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
+    boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
+    boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
+    boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
+    boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
+com.ddyyyg.shop.utils.PayWebChromeClient$1 -> com.ddyyyg.shop.a.k:
+    com.ddyyyg.shop.utils.PayWebChromeClient this$0 -> a
+    void <init>(com.ddyyyg.shop.utils.PayWebChromeClient) -> <init>
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ddyyyg.shop.utils.PayWebChromeClient$2 -> com.ddyyyg.shop.a.l:
+    android.webkit.JsResult val$result -> a
+    com.ddyyyg.shop.utils.PayWebChromeClient this$0 -> b
+    void <init>(com.ddyyyg.shop.utils.PayWebChromeClient,android.webkit.JsResult) -> <init>
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ddyyyg.shop.utils.PayWebViewClient -> com.ddyyyg.shop.a.m:
+    android.webkit.WebView webView -> a
+    android.widget.ProgressBar progressBar -> b
+    com.ddyyyg.shop.view.NavigationBar navigationBar -> c
+    void <init>(android.webkit.WebView,android.widget.ProgressBar,com.ddyyyg.shop.view.NavigationBar) -> <init>
+    void onLoadResource(android.webkit.WebView,java.lang.String) -> onLoadResource
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+com.ddyyyg.shop.utils.SPUtils -> com.ddyyyg.shop.a.n:
     void <init>() -> <init>
     void putString(android.content.Context,java.lang.String,java.lang.String) -> putString
     java.lang.String getString(android.content.Context,java.lang.String,java.lang.String) -> getString
-com.ddyyyg.shop.utils.TimeUtil -> com.ddyyyg.shop.a.l:
+com.ddyyyg.shop.utils.TimeUtil -> com.ddyyyg.shop.a.o:
     java.lang.String getCurrentTime(java.lang.String) -> a
     java.lang.String Date2TimeStamp() -> a
     java.lang.String getBeijingTime() -> b
     java.lang.String getFormatedDateString(float) -> a
-com.ddyyyg.shop.utils.ToastUtil -> com.ddyyyg.shop.a.m:
+com.ddyyyg.shop.utils.ToastUtil -> com.ddyyyg.shop.a.p:
     void makeText(android.content.Context,java.lang.String) -> a
+com.ddyyyg.shop.utils.URLSetUtil -> com.ddyyyg.shop.a.q:
+    java.util.List tabUrls -> a
+    com.ddyyyg.shop.utils.URLSetUtil instance -> b
+    void <init>() -> <init>
+    com.ddyyyg.shop.utils.URLSetUtil getInstance() -> a
+    void initTabUrls() -> b
+com.ddyyyg.shop.view.MainView -> com.ddyyyg.shop.view.MainView:
+    android.content.Context context -> a
+    android.widget.ProgressBar mBar -> b
+    android.webkit.WebView mWv -> c
+    android.os.Handler mHandler -> d
+    com.ddyyyg.shop.view.NavigationBar mNavBar -> e
+    void <init>(android.content.Context) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+    void onFinishInflate() -> onFinishInflate
+    void setupViews(android.content.Context) -> setupViews
+    android.webkit.WebView getWebView() -> getWebView
+    android.os.Handler getHandler() -> getHandler
+    com.ddyyyg.shop.view.NavigationBar getNavigationBar() -> getNavigationBar
+    android.widget.ProgressBar getProgressBar() -> getProgressBar
+com.ddyyyg.shop.view.MainView$1 -> com.ddyyyg.shop.view.a:
+    com.ddyyyg.shop.view.MainView this$0 -> a
+    void <init>(com.ddyyyg.shop.view.MainView) -> <init>
+    void onClick(android.view.View) -> onClick
+com.ddyyyg.shop.view.MainView$2 -> com.ddyyyg.shop.view.b:
+    com.ddyyyg.shop.view.MainView this$0 -> a
+    void <init>(com.ddyyyg.shop.view.MainView) -> <init>
+    void onClick(android.view.View) -> onClick
 com.ddyyyg.shop.view.NavigationBar -> com.ddyyyg.shop.view.NavigationBar:
     android.content.Context context -> a
     android.widget.FrameLayout flLeft -> b
@@ -256,14 +314,10 @@ com.ddyyyg.shop.view.NavigationBar -> com.ddyyyg.shop.view.NavigationBar:
     void setLeftInVisible() -> a
     void setLeftVisible() -> b
 com.ddyyyg.shop.wxapi.WXPayEntryActivity -> com.ddyyyg.shop.wxapi.WXPayEntryActivity:
-    android.widget.ProgressBar mBar -> a
-    android.webkit.WebView mWv -> b
-    android.os.Handler mHandler -> c
-    java.util.List tabUrls -> d
-    com.ddyyyg.shop.view.NavigationBar mNavBar -> e
-    com.tencent.mm.sdk.openapi.IWXAPI iwxapi -> f
-    boolean lock -> g
-    long mExitTime -> h
+    com.ddyyyg.shop.view.MainView mainView -> a
+    com.tencent.mm.sdk.openapi.IWXAPI iwxapi -> b
+    boolean lock -> c
+    long mExitTime -> d
     void <init>() -> <init>
     void onReq(com.tencent.mm.sdk.modelbase.BaseReq) -> a
     void onResp(com.tencent.mm.sdk.modelbase.BaseResp) -> a
@@ -271,51 +325,11 @@ com.ddyyyg.shop.wxapi.WXPayEntryActivity -> com.ddyyyg.shop.wxapi.WXPayEntryActi
     void onNewIntent(android.content.Intent) -> onNewIntent
     boolean isPaySupported() -> a
     boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
-    boolean isIndex() -> g
-    android.widget.ProgressBar getProgressBar() -> h
-    android.webkit.WebView getWebView() -> i
-    android.os.Handler getmHandler() -> b
-    com.ddyyyg.shop.view.NavigationBar getNavigationBar() -> c
-    com.tencent.mm.sdk.openapi.IWXAPI getWxapi() -> d
-    void regToWx() -> j
-    boolean isLock() -> e
+    boolean isLock() -> b
     void setLock(boolean) -> a
-    java.util.List getTabUrls() -> f
-    android.webkit.WebView access$000(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> a
-    android.widget.ProgressBar access$100(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> b
-    boolean access$200(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> c
-com.ddyyyg.shop.wxapi.WXPayEntryActivity$1 -> com.ddyyyg.shop.wxapi.a:
-    com.ddyyyg.shop.wxapi.WXPayEntryActivity this$0 -> a
-    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> <init>
-    void onClick(android.view.View) -> onClick
-com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient -> com.ddyyyg.shop.wxapi.b:
-    com.ddyyyg.shop.wxapi.WXPayEntryActivity this$0 -> a
-    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> <init>
-    void onReceivedTitle(android.webkit.WebView,java.lang.String) -> onReceivedTitle
-    void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
-    boolean onJsConfirm(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsConfirm
-    boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
-    boolean onJsPrompt(android.webkit.WebView,java.lang.String,java.lang.String,java.lang.String,android.webkit.JsPromptResult) -> onJsPrompt
-    boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
-    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity,com.ddyyyg.shop.wxapi.WXPayEntryActivity$1) -> <init>
-com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$1 -> com.ddyyyg.shop.wxapi.c:
-    com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient this$1 -> a
-    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient) -> <init>
-    void onClick(android.content.DialogInterface,int) -> onClick
-com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient$2 -> com.ddyyyg.shop.wxapi.d:
-    android.webkit.JsResult val$result -> a
-    com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient this$1 -> b
-    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebChromeClient,android.webkit.JsResult) -> <init>
-    void onClick(android.content.DialogInterface,int) -> onClick
-com.ddyyyg.shop.wxapi.WXPayEntryActivity$PayWebViewClient -> com.ddyyyg.shop.wxapi.e:
-    com.ddyyyg.shop.wxapi.WXPayEntryActivity this$0 -> a
-    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity) -> <init>
-    void onLoadResource(android.webkit.WebView,java.lang.String) -> onLoadResource
-    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
-    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
-    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
-    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
-    void <init>(com.ddyyyg.shop.wxapi.WXPayEntryActivity,com.ddyyyg.shop.wxapi.WXPayEntryActivity$1) -> <init>
+    com.tencent.mm.sdk.openapi.IWXAPI getWxapi() -> c
+    void regToWx() -> d
+    void setupViews() -> e
 com.tencent.mm.a.a -> com.a.a.a.a:
     java.lang.String a(byte[]) -> a
 com.tencent.mm.sdk.a -> com.a.a.b.a:

@@ -2,10 +2,10 @@ package com.ddyyyg.shop.utils;
 
 import android.content.Context;
 
-import com.ddyyyg.shop.Constants;
+import com.ddyyyg.app.Constants;
 import com.ddyyyg.shop.R;
-import com.ddyyyg.shop.model.PayModel;
-import com.ddyyyg.shop.model.PayReqModel;
+import com.ddyyyg.shop.ui.model.PayModel;
+import com.ddyyyg.shop.ui.model.PayReqModel;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

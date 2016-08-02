@@ -34,18 +34,22 @@ public final class R {
         public static final int progressbar_style=0x7f020000;
     }
     public static final class id {
-        public static final int nav=0x7f090000;
-        public static final int progress=0x7f090002;
-        public static final int wv=0x7f090001;
+        public static final int main=0x7f090000;
+        public static final int nav=0x7f090001;
+        public static final int progress=0x7f090003;
+        public static final int wv=0x7f090002;
     }
     public static final class layout {
         public static final int activity_main=0x7f040000;
-        public static final int pay_result=0x7f040001;
+        public static final int current_image_view=0x7f040001;
+        public static final int pay_result=0x7f040002;
+        public static final int view_main=0x7f040003;
     }
     public static final class mipmap {
         public static final int appicon=0x7f030000;
         public static final int back_arrow=0x7f030001;
         public static final int ic_launcher=0x7f030002;
+        public static final int search=0x7f030003;
     }
     public static final class string {
         public static final int API_SECRET_KEY=0x7f070000;

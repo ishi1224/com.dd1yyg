@@ -1,7 +1,15 @@
 [
     {
+        "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/baidu/debug/mipmap-hdpi-v4/launchs.png",
+        "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-hdpi/launchs.png"
+    },
+    {
         "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/baidu/debug/mipmap-hdpi-v4/back_arrow.png",
         "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-hdpi/back_arrow.png"
+    },
+    {
+        "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/baidu/debug/mipmap-hdpi-v4/search.png",
+        "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-hdpi/search.png"
     },
     {
         "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/baidu/debug/mipmap-hdpi-v4/appicon.png",

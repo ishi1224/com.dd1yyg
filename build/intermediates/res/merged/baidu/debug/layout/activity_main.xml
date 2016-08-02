@@ -6,31 +6,10 @@
     android:orientation="vertical"
     tools:context="com.ddyyyg.shop.MainActivity">
 
-    <com.ddyyyg.shop.view.NavigationBar
-        android:id="@+id/nav"
+    <com.ddyyyg.shop.view.CustomViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="48dp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <WebView
-            android:id="@+id/wv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none" />
-
-        <ProgressBar
-            android:id="@+id/progress"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:progressDrawable="@drawable/progressbar_style"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:max="100"
-            android:layout_alignParentTop="true"/>
-    </RelativeLayout>
-
+        android:layout_height="match_parent" >
+    </com.ddyyyg.shop.view.CustomViewPager>
 
 </LinearLayout>

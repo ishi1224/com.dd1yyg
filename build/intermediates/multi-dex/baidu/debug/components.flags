@@ -25,6 +25,10 @@
     <init>();
 }
 
+-keep class com.ddyyyg.shop.ui.activity.WelcomeActivity {
+    <init>();
+}
+
 -keep public class * extends android.app.backup.BackupAgent {
     <init>();
 }

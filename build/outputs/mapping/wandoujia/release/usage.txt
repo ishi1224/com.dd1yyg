@@ -25,9 +25,12 @@ com.ddyyyg.app.AppConfig:
     public static final java.lang.String MISSINGPARAMETERS
     public static final java.lang.String REMOTESERVICEEXCEPTION
     7:7:public AppConfig()
-com.ddyyyg.app.AppContext
+com.ddyyyg.app.AppContext:
+    private static com.ddyyyg.app.AppContext mInstance
+    14:20:public static com.ddyyyg.app.AppContext getInstance()
 com.ddyyyg.shop.BuildConfig
 com.ddyyyg.shop.Constants
+com.ddyyyg.shop.Constants$MobileUrl
 com.ddyyyg.shop.Constants$ShowMsgActivity
 com.ddyyyg.shop.Constants$WxAuth
 com.ddyyyg.shop.R
@@ -40,19 +43,7 @@ com.ddyyyg.shop.R$layout
 com.ddyyyg.shop.R$mipmap
 com.ddyyyg.shop.R$string
 com.ddyyyg.shop.R$style
-com.ddyyyg.shop.utils.AppUtil:
-    28:28:public AppUtil()
-    31:44:public static java.lang.String getSignLoca(android.content.Context)
-    49:55:public static android.content.pm.PackageInfo getPackageInfo(android.content.Context)
-    60:61:public static java.lang.String getSign(android.content.Context)
-    67:80:public static java.lang.String getLocalIpAddress()
-    85:105:public static java.lang.String getHostAddress()
-    151:151:private static java.lang.String intToIp(int)
-    158:166:public static java.lang.String getIp(android.content.Context)
-    172:180:public static java.lang.String getSingInfo(android.content.Context)
-    185:197:public static void parseSignature(byte[])
-    206:223:public static java.lang.String encryptionMD5(byte[])
-    227:231:public static java.lang.String[] getDeviceInfo()
+com.ddyyyg.shop.utils.AppUtil
 com.ddyyyg.shop.utils.DensityUtil:
     10:10:public DensityUtil()
     24:25:public static int px2dip(android.content.Context,float)
@@ -96,6 +87,7 @@ com.ddyyyg.shop.utils.OrderUtil:
     21:21:public OrderUtil()
     46:46:public static final java.lang.String getOutTradeNo()
     51:51:public static final java.lang.String getSpbillCreateIp()
+    55:55:public static final java.lang.String getRealIp()
 com.ddyyyg.shop.utils.TimeUtil:
     public static final java.lang.String TIME_FORMAT_ONE
     public static final java.lang.String TIME_FORMAT_TWO
@@ -138,6 +130,10 @@ com.ddyyyg.shop.utils.TimeUtil:
     310:310:public static java.lang.String getNewyorkTime()
 com.ddyyyg.shop.utils.ToastUtil:
     9:9:public ToastUtil()
+com.ddyyyg.shop.view.MainView:
+    private static final java.lang.String TAG
+    private static final java.lang.String ERROR_PAGE
+    private static final java.lang.String APP_CACAHE_DIRNAME
 com.ddyyyg.shop.view.NavigationBar:
     private static final int WIDTH
     private static final int MP
