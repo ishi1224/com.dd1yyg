@@ -19,6 +19,7 @@ public class PayWebViewClient extends WebViewClient {
     private NavigationBar navigationBar;
 
     public PayWebViewClient(WebView webView, ProgressBar progressBar, NavigationBar navigationBar) {
+        super();
         this.webView = webView;
         this.progressBar = progressBar;
         this.navigationBar = navigationBar;

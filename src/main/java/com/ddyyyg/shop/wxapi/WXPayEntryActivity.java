@@ -2,6 +2,7 @@ package com.ddyyyg.shop.wxapi;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -15,6 +16,7 @@ import com.ddyyyg.app.Constants;
 import com.ddyyyg.shop.R;
 import com.ddyyyg.shop.ui.adapter.ViewPagerAdapter;
 import com.ddyyyg.shop.utils.LogUtil;
+import com.ddyyyg.shop.utils.PayWebChromeClient;
 import com.ddyyyg.shop.utils.SPUtils;
 import com.ddyyyg.shop.utils.ToastUtil;
 import com.ddyyyg.shop.utils.URLSetUtil;
@@ -70,6 +72,22 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         super.onNewIntent(intent);
         setIntent(intent);
         getWxapi().handleIntent(intent, this);
+    }
+
+    /**
+     * 返回文件选择
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent intent) {
+        if (requestCode == PayWebChromeClient.FILECHOOSER_RESULTCODE) {
+            if (null == PayWebChromeClient.mUploadMessage){//TODO
+                return;
+            }
+            Uri result = intent == null || resultCode != RESULT_OK ? null: intent.getData();
+            PayWebChromeClient.mUploadMessage.onReceiveValue(result);
+            PayWebChromeClient.mUploadMessage = null;
+
+        }
     }
 
     public boolean isPaySupported(){

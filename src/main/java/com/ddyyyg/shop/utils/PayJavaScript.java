@@ -58,49 +58,45 @@ public class PayJavaScript {
     }
 
     @JavascriptInterface
-    public void payWeixin(Object obj) {//javascript:payjavascript.payWeixin
+    public void payWeixin(String obj) {//javascript:payjavascript.payWeixin
 
-        LogUtil.d(TAG,"javascript:payjavascript.payWeixin");
+        LogUtil.d(TAG,"javascript:payjavascript.payWeixin"+String.valueOf(obj));
 
-        if (obj instanceof String) {
+        String str = String.valueOf(obj);
 
-            String str = (String)obj;
+        if (TextUtils.isEmpty(str)) { return; }
 
-            if (TextUtils.isEmpty(str)) { return; }
+        String[] params = str.split("#");
 
-            String[] params = str.split("#");
+        if (params.length == 4) {
 
-            if (params.length == 4) {
+            Map<String, String> param = new HashMap<String, String>();
 
-                Map<String, String> param = new HashMap<String, String>();
+            param.put("body", params[0]);
 
-                param.put("body", params[0]);
+            param.put("out_trade_no", params[1]);
 
-                param.put("out_trade_no", params[1]);
+            param.put("total_fee", params[2]);
 
-                param.put("total_fee", params[2]);
+            param.put("spbill_create_ip", params[3]);
 
-                param.put("spbill_create_ip", params[3]);
-
-                if (!activity.isPaySupported()) {
-                    return;
-                }
-
-                if (activity.isLock()) {
-                    //1、生成订单，返回订单号 2、使用微信支付订单
-                    activity.setLock(true);
-                    wxPay(genStringEntity(param));
-                    //testWxOrder();
-                }
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        activity.setLock(false);
-                    }
-                }, 10 * 1000);
-
+            if (!activity.isPaySupported()) {
+                return;
             }
+
+            if (activity.isLock()) {
+                //1、生成订单，返回订单号 2、使用微信支付订单
+                activity.setLock(true);
+                wxPay(genStringEntity(param));
+                //testWxOrder();
+            }
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    activity.setLock(false);
+                }
+            }, 10 * 1000);
         }
     }
 
