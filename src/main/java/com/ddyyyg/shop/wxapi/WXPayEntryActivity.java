@@ -22,6 +22,8 @@ import com.ddyyyg.shop.utils.ToastUtil;
 import com.ddyyyg.shop.utils.URLSetUtil;
 import com.ddyyyg.shop.view.CustomViewPager;
 import com.ddyyyg.shop.view.MainView;
+import com.github.yoojia.anyversion.AnyVersion;
+import com.github.yoojia.anyversion.NotifyStyle;
 import com.tencent.mm.sdk.constants.Build;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
@@ -62,6 +64,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AnyVersion.getInstance().setURL(Constants.UPLOADURL);
+        AnyVersion.getInstance().check(NotifyStyle.Dialog);
         setupViews();
         regToWx();
         getWxapi().handleIntent(getIntent(), this);
@@ -180,17 +184,18 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 return false;//返回true拦截手动滑动
             }
         });
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 pager.setCurrentItem(1);
             }
-        }, 3*1000);
+        }, 2 * 1000);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -206,8 +211,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     protected void onStop() {//在Activity消失后执行
         super.onStop();
-        pager.setScanScroll(true);
-        pager.setCurrentItem(0);
+        //pager.setScanScroll(true);
+        //pager.setCurrentItem(0);
     }
 
     @Override

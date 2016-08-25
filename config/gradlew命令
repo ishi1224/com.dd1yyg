@@ -1,0 +1,3 @@
+./gradlew -Pmarket=com.ddyyyg/config/markets.txt clean archiveApkRelease
+
+http://docs.anysdk.com/Stores//渠道编码

@@ -4,6 +4,8 @@ public class Constants {
 
 	public static final String HOST = "http://app.dd1yyg.com";
 
+	public static final String UPLOADURL = HOST + "/version.json";
+
 	public static class MobileUrl{
 
 		public static final String MOBILE = "/?/mobile/mobile";//主页

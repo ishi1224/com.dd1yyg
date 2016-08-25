@@ -4,7 +4,15 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.ddyyyg.shop.utils.LogUtil;
+import com.github.yoojia.anyversion.AnyVersion;
+import com.github.yoojia.anyversion.Version;
+import com.github.yoojia.anyversion.VersionParser;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,6 +34,25 @@ public class App extends Application {
         super.onCreate();
         LogUtil.i("Application", "app start...");
         mApp = this;
+        AnyVersion.init(this, new VersionParser() {
+            @Override
+            public Version onParse(String response) {
+                final JSONTokener tokener = new JSONTokener(response);
+                try {
+                    JSONObject json = (JSONObject) tokener.nextValue();
+                    String name = new String(json.getString("name").getBytes("UTF-8"));
+                    String note = new String(json.getString("note").getBytes("UTF-8"));
+                    String url = new String(json.getString("url").getBytes("UTF-8"));
+                    int code = json.getInt("code");
+                    return new Version(name, note, url, code);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        });
     }
     /**
      * 获取Application上下文

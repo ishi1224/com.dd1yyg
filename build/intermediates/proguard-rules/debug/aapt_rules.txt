@@ -1,0 +1,21 @@
+# view AndroidManifest.xml #generated:24
+-keep class com.ddyyyg.app.App { <init>(...); }
+
+# view AndroidManifest.xml #generated:50
+-keep class com.ddyyyg.shop.receiver.AppRegister { <init>(...); }
+
+# view AndroidManifest.xml #generated:56
+-keep class com.ddyyyg.shop.ui.activity.WelcomeActivity { <init>(...); }
+
+# view res/layout/activity_main.xml #generated:9
+-keep class com.ddyyyg.shop.view.CustomViewPager { <init>(...); }
+
+# view res/layout/view_main.xml #generated:2
+-keep class com.ddyyyg.shop.view.MainView { <init>(...); }
+
+# view res/layout/view_main.xml #generated:8
+-keep class com.ddyyyg.shop.view.NavigationBar { <init>(...); }
+
+# view AndroidManifest.xml #generated:31
+-keep class com.ddyyyg.shop.wxapi.WXPayEntryActivity { <init>(...); }
+

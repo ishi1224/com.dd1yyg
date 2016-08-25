@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/yoojia/Workspace/Android/AnyVersion/lib/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="later">稍后</string>
+    <string name="update_now">立即更新</string>
+    <!-- From: file:/Users/yoojia/Workspace/Android/AnyVersion/lib/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="Theme.System.Alert" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+    </style>
+</resources>
