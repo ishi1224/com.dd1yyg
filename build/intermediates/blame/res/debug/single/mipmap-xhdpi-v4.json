@@ -1,22 +1,22 @@
 [
     {
-        "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/back_arrow.png",
-        "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-xhdpi/back_arrow.png"
+        "merged": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/search.png",
+        "source": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/src/main/res/mipmap-xhdpi/search.png"
     },
     {
-        "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/search.png",
-        "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-xhdpi/search.png"
+        "merged": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/appicon.png",
+        "source": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/src/main/res/mipmap-xhdpi/appicon.png"
     },
     {
-        "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/appicon.png",
-        "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-xhdpi/appicon.png"
+        "merged": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/back_arrow.png",
+        "source": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/src/main/res/mipmap-xhdpi/back_arrow.png"
     },
     {
-        "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/launchs.png",
-        "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-xhdpi/launchs.png"
+        "merged": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/launchs.png",
+        "source": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/src/main/res/mipmap-xhdpi/launchs.png"
     },
     {
-        "merged": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
-        "source": "/Users/QuestZhang/android/Applications/MyApplication/com.ddyyyg/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
+        "source": "/Users/QuestZhang/android/Applications/ddyg/com.ddyyyg/src/main/res/mipmap-xhdpi/ic_launcher.png"
     }
 ]
